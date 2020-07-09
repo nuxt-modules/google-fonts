@@ -28,7 +28,7 @@
     "@commitlint/config-conventional": "latest",
     "@nuxtjs/eslint-config": "latest",
     "@nuxtjs/module-test-utils": "latest",
-    "core-js": "2",
+    "core-js": "3",
     "eslint": "latest",
     "husky": "latest",
     "jest": "latest",
