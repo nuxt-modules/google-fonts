@@ -12,6 +12,7 @@
 
 ## Features
 
+- Specify fonts by name/variant
 - Parse head links to Google Fonts
 - Creates only an external link to Google Fonts
 - [Support CSS API v2](https://developers.google.com/fonts/docs/css2)
@@ -56,6 +57,135 @@ export default {
   }
 }
 ```
+
+## Options
+
+### `families`
+
+- Type: `Object`
+- Default: `{}`
+
+```js
+{
+  families: {
+    Roboto: true,
+    Lato: [100, 300],
+    Raleway: {
+      wght: [100, 400]
+      ital: [100]
+    }
+  }
+}
+```
+
+See https://developers.google.com/fonts/docs/css2#quickstart_guides
+
+### `display`
+
+- Type: `String`
+- Default: `null`
+
+The font-display property lets you control what happens while the font is still loading or otherwise unavailable.
+
+```js
+{
+  display: 'swap' // 'auto' | 'block' | 'swap' | 'fallback' | 'optional'
+}
+```
+
+See https://developers.google.com/fonts/docs/css2#use_font-display
+
+### `subsets`
+
+- Type: `Array[String]|String`
+- Default: `[]`
+
+Some of the fonts in the Google Font Directory support multiple scripts (like Latin, Cyrillic, and Greek for example). In order to specify which subsets should be downloaded the subset parameter should be appended to the URL.
+
+See https://developers.google.com/fonts/docs/getting_started#specifying_script_subsets
+
+### `prefetch`
+
+- Type: `Boolean`
+- Default: `true`
+
+This option inject `<link rel =" dns-prefetch "href =" https://fonts.gstatic.com/ "/>` into your project header.
+
+See https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch
+
+### `preconnect`
+
+- Type: `Boolean`
+- Default: `true`
+
+This option inject `<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />` into your project header.
+
+See https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch#Best_practices
+
+### `download`
+
+- Type: `Boolean`
+- Default: `false`
+
+This option you can download css and google sources for your local project.
+This means that your project will not depend on these external resources.
+
+> **Note:** The options below are only used when this option is enabled.
+
+### `base64`
+
+- Type: `Boolean`
+- Default: `false`
+
+This option encode the fonts and inject directly into the generated css file.
+
+### `inject`
+
+- Type: `Boolean`
+- Default: `true`
+
+This option inject the globally generated css file.
+
+See https://nuxtjs.org/api/configuration-css/
+
+### `overwriting`
+
+- Type: `Boolean`
+- Default: `false`
+
+This option prevents files from being downloaded more than once.
+
+### `outputDir`
+
+- Type: `String`
+- Default: `this.options.dir.assets`
+
+Specifies the output directory for downloaded files.
+
+### `stylePath`
+
+- Type: `String`
+- Default: `'css/fonts.css'`
+
+Specifies the path of the css file to be generated.
+
+### `fontsDir`
+
+- Type: `String`
+- Default: `'fonts'`
+
+Specifies the directory where the fonts will be downloaded.
+
+**Note:** This option is used if the `base64` option is disabled.
+
+### `fontsPath`
+
+- Type: `String`
+- Default: `'~assets/fonts'`
+
+Specifies the path of the fonts within the generated css file.
+
+**Note:** This option is used if the `base64` option is disabled.
 
 ## Development
 
