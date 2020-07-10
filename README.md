@@ -206,11 +206,11 @@ Copyright (c) Nuxt Community
 [npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/google-fonts.svg
 [npm-downloads-href]: https://npmjs.com/package/@nuxtjs/google-fonts
 
-[github-actions-ci-src]: https://github.com/nuxt-community/google-fonts/workflows/ci/badge.svg
-[github-actions-ci-href]: https://github.com/nuxt-community/google-fonts/actions?query=workflow%3Aci
+[github-actions-ci-src]: https://github.com/nuxt-community/google-fonts-module/workflows/ci/badge.svg
+[github-actions-ci-href]: https://github.com/nuxt-community/google-fonts-module/actions?query=workflow%3Aci
 
-[codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/google-fonts.svg
-[codecov-href]: https://codecov.io/gh/nuxt-community/google-fonts
+[codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/google-fonts-module.svg
+[codecov-href]: https://codecov.io/gh/nuxt-community/google-fonts-module
 
 [license-src]: https://img.shields.io/npm/l/@nuxtjs/google-fonts.svg
 [license-href]: https://npmjs.com/package/@nuxtjs/google-fonts
