@@ -71,7 +71,7 @@ export default {
     Roboto: true,
     Lato: [100, 300],
     Raleway: {
-      wght: [100, 400]
+      wght: [100, 400],
       ital: [100]
     }
   }
