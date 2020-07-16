@@ -21,10 +21,10 @@
     "consola": "^2.14.0",
     "deepmerge": "^4.2.2",
     "fs-extra": "^9.0.1",
-    "got": "^11.5.0"
+    "got": "^11.5.1"
   },
   "devDependencies": {
-    "@babel/runtime-corejs2": "^7.10.4",
+    "@babel/runtime-corejs2": "^7.10.5",
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@nuxtjs/eslint-config": "latest",
