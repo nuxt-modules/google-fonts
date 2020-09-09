@@ -1,6 +1,6 @@
 {
   "name": "@nuxtjs/google-fonts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Google Fonts module for NuxtJS",
   "repository": "nuxt-community/google-fonts",
   "license": "MIT",
