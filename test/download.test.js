@@ -23,6 +23,6 @@ describe('download', () => {
 
   test('css inject', () => {
     expect(nuxt.options.css).toHaveLength(1)
-    expect(nuxt.options.css[0]).toContain('css/fonts.css')
+    expect(nuxt.options.css[0]).toContain('fonts.css')
   })
 })
