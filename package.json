@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "consola": "^2.15.0",
-    "google-fonts-helper": "^1.0.3"
+    "google-fonts-helper": "^1.0.4"
   },
   "devDependencies": {
     "@babel/runtime-corejs2": "latest",

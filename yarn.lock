@@ -5419,10 +5419,10 @@ globby@^11.0.1:
     merge2 "^1.3.0"
     slash "^3.0.0"
 
-google-fonts-helper@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/google-fonts-helper/-/google-fonts-helper-1.0.3.tgz#85a51f8044cdc3cc64f04bf27651370b315c0943"
-  integrity sha512-4yLgyT/eSMEeqREdgPRYtSG7T2xV/F/1cNuqKKHEGaoOy3B2/SyCh+ffpyszw8tygSIpnCBiXgGVcBHPs6D5wA==
+google-fonts-helper@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/google-fonts-helper/-/google-fonts-helper-1.0.4.tgz#c64dbb49428cab14517804b15f7bb06491d6ec69"
+  integrity sha512-SSjbWUqygILiMjjubdhEME93BccRvzjtSOzfs6eBHhdYYn7jXVj1uRkL7ouuleDd/opbV2L2jhTDIN96oi2mWQ==
   dependencies:
     deepmerge "^4.2.2"
     fs-extra "^9.0.1"
