@@ -15,6 +15,7 @@ describe('basic', () => {
     const html = await get('/')
     expect(html).toContain('<link data-n-head="ssr" rel="dns-prefetch" href="https://fonts.gstatic.com/">')
     expect(html).toContain('<link data-n-head="ssr" rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="true">')
+    expect(html).toContain('<link data-n-head="ssr" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
     expect(html).toContain('<link data-n-head="ssr" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
   })
 })
