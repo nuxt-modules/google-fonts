@@ -18,6 +18,7 @@
 - [Support CSS API v2](https://developers.google.com/fonts/docs/css2)
 - [Add dns-prefetch](https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch)
 - [Add preconnect](https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch#Best_practices)
+- [Add preload](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content)
 - Download css/fonts to local project (No need external resources)
 - Encode fonts to base64
 
@@ -122,6 +123,15 @@ See https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch
 This option inject `<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />` into your project header.
 
 See https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch#Best_practices
+
+### `preload`
+
+- Type: `Boolean`
+- Default: `true`
+
+This option inject `<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto" />` into your project header, optionally increase loading priority.
+
+See https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content
 
 ### `download`
 
