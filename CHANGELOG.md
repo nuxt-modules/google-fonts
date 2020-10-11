@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/nuxt-community/google-fonts/compare/v1.0.3...v1.1.0) (2020-10-11)
+
+
+### Features
+
+* preload option ([de34e4e](https://github.com/nuxt-community/google-fonts/commit/de34e4e557e81d01ccb4c1646992bcc3c448ff05))
+
+
+### Bug Fixes
+
+* render blocking resources ([84c7f36](https://github.com/nuxt-community/google-fonts/commit/84c7f360d6b97eb07a9970a6826b1a7b2a40274b))
+
 ### [1.0.3](https://github.com/nuxt-community/google-fonts/compare/v1.0.2...v1.0.3) (2020-09-17)
 
 ### [1.0.2](https://github.com/nuxt-community/google-fonts/compare/v1.0.1...v1.0.2) (2020-09-10)
