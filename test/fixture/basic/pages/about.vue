@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="font-family: 'Lato'">
     About
     <p>
       <NuxtLink to="/">
