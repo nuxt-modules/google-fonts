@@ -13,9 +13,9 @@ describe('basic', () => {
 
   test('render', async () => {
     const html = await get('/')
-    expect(html).toContain('<link data-hid="gf-prefetch" rel="dns-prefetch" href="https://fonts.gstatic.com/">')
-    expect(html).toContain('<link data-hid="gf-preconnect" rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="true">')
-    expect(html).toContain('<link data-hid="gf-preload" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
-    expect(html).toContain('<style data-hid="gf-style" data-pbody="true">@import "https://fonts.googleapis.com/css2?family=Roboto&family=Lato"</style>')
+    expect(html).toContain('<link data-n-head="ssr" data-hid="gf-prefetch" rel="dns-prefetch" href="https://fonts.gstatic.com/">')
+    expect(html).toContain('<link data-n-head="ssr" data-hid="gf-preconnect" rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="true">')
+    expect(html).toContain('<link data-n-head="ssr" data-hid="gf-preload" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
+    expect(html).toContain('<style data-n-head="ssr" data-hid="gf-style" data-pbody="true">@import "https://fonts.googleapis.com/css2?family=Roboto&family=Lato"</style>')
   })
 })
