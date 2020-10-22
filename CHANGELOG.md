@@ -7,8 +7,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* load fonts usign style import ([47020d8](https://github.com/nuxt-community/google-fonts/commit/47020d8d2d11a3c521dc36e6cd841a9f142bca9c))
-* remove `once` ([e502024](https://github.com/nuxt-community/google-fonts/commit/e502024b5bde0499656bf4ea157ca29dc2994caa))
 * use script to load fonts ([0a453c1](https://github.com/nuxt-community/google-fonts/commit/0a453c14375c68ea2ff95d45ae7a02702954a01f))
 
 ### [1.1.2](https://github.com/nuxt-community/google-fonts/compare/v1.1.1...v1.1.2) (2020-10-20)
