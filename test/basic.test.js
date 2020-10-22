@@ -11,13 +11,28 @@ describe('basic', () => {
     await nuxt.close()
   })
 
-  test('render', async () => {
-    const url = 'https://fonts.googleapis.com/css2?family=Roboto&family=Lato'
+  test('has prefetch link', async () => {
     const html = await get('/')
-    expect(html).toContain('<link data-hid="gf-prefetch" rel="dns-prefetch" href="https://fonts.gstatic.com/">')
-    expect(html).toContain('<link data-hid="gf-preconnect" rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="true">')
-    expect(html).toContain(`<link data-hid="gf-preload" rel="preload" as="style" href="${url}">`)
-    expect(html).toContain(`<link data-hid="gf-stylesheet" rel="stylesheet" href="${url}" media="print" onload="this.onload=null;this.removeAttribute('media');`)
-    expect(html).toContain(`<noscript data-hid="gf-noscript"><link rel="stylesheet" href="${url}"></noscript>`)
+    expect(html).toContain('<link data-n-head="ssr" data-hid="gf-prefetch" rel="dns-prefetch" href="https://fonts.gstatic.com/">')
+  })
+
+  test('has preconnect link', async () => {
+    const html = await get('/')
+    expect(html).toContain('<link data-n-head="ssr" data-hid="gf-preconnect" rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="true">')
+  })
+
+  test('has preload link', async () => {
+    const html = await get('/')
+    expect(html).toContain('<link data-n-head="ssr" data-hid="gf-preload" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
+  })
+
+  test('has script to import font css', async () => {
+    const html = await get('/')
+    expect(html).toContain('data-hid="gf-script"')
+  })
+
+  test('has noscript fallback', async () => {
+    const html = await get('/')
+    expect(html).toContain('data-hid="gf-noscript"')
   })
 })
