@@ -18,7 +18,7 @@ describe('basic', () => {
 
   test('has preconnect link', async () => {
     const html = await get('/')
-    expect(html).toContain('<link data-n-head="ssr" data-hid="gf-preconnect" rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="true">')
+    expect(html).toContain('<link data-n-head="ssr" data-hid="gf-preconnect" rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">')
   })
 
   test('has preload link', async () => {
