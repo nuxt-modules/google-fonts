@@ -1,10 +1,10 @@
 const { setup, loadConfig, get } = require('@nuxtjs/module-test-utils')
 
-describe('basic', () => {
+describe('use stylesheet', () => {
   let nuxt
 
   beforeAll(async () => {
-    ({ nuxt } = (await setup(loadConfig(__dirname, 'basic'))))
+    ({ nuxt } = (await setup(loadConfig(__dirname, 'use-stylesheet'))))
   }, 60000)
 
   afterAll(async () => {
@@ -26,18 +26,18 @@ describe('basic', () => {
     expect(html).toContain('<link data-n-head="ssr" data-hid="gf-preload" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
   })
 
-  test('no has stylesheet link', async () => {
+  test('has stylesheet link', async () => {
     const html = await get('/')
-    expect(html).not.toContain('<link data-n-head="ssr" data-hid="gf-style" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
+    expect(html).toContain('<link data-n-head="ssr" data-hid="gf-style" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
   })
 
-  test('has script to import font css', async () => {
+  test('no has script', async () => {
     const html = await get('/')
-    expect(html).toContain('data-hid="gf-script"')
+    expect(html).not.toContain('data-hid="gf-script"')
   })
 
-  test('has noscript fallback', async () => {
+  test('not has noscript fallback', async () => {
     const html = await get('/')
-    expect(html).toContain('data-hid="gf-noscript"')
+    expect(html).not.toContain('data-hid="gf-noscript"')
   })
 })
