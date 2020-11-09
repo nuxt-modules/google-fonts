@@ -85,7 +85,7 @@ See https://developers.google.com/fonts/docs/css2#quickstart_guides
 ### `display`
 
 - Type: `String`
-- Default: `null`
+- Default: `'swap'`
 
 The font-display property lets you control what happens while the font is still loading or otherwise unavailable.
 

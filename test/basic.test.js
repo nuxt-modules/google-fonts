@@ -23,7 +23,7 @@ describe('basic', () => {
 
   test('has preload link', async () => {
     const html = await get('/')
-    expect(html).toContain('<link data-n-head="ssr" data-hid="gf-preload" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
+    expect(html).toContain('<link data-n-head="ssr" data-hid="gf-preload" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato&amp;display=swap">')
   })
 
   test('has script to import font css', async () => {
