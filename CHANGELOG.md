@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/nuxt-community/google-fonts/compare/v1.1.6...v1.2.0) (2020-11-10)
+
+
+### Features
+
+* add option to use stylesheet ([e47728b](https://github.com/nuxt-community/google-fonts/commit/e47728b4ba6f4d09bf94a51a14b7b55378f69f7e))
+
 ### [1.1.6](https://github.com/nuxt-community/google-fonts/compare/v1.1.5...v1.1.6) (2020-11-10)
 
 ### [1.1.5](https://github.com/nuxt-community/google-fonts/compare/v1.1.4...v1.1.5) (2020-11-09)
