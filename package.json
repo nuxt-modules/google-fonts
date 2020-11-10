@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "consola": "^2.15.0",
-    "google-fonts-helper": "^1.1.1"
+    "google-fonts-helper": "^1.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",
