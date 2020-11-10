@@ -138,8 +138,7 @@ See https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content
 - Type: `Boolean`
 - Default: `false`
 
-This option inject `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto" />` into your project header, 
-recommended for projects that use the AMP module that removes scripts.
+This option inject `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto" />` into your project header, recommended for projects that use the AMP module that removes scripts.
 
 ### `download`
 
