@@ -1,0 +1,121 @@
+---
+title: Options
+description: 'Adding options to enhance your Google Fonts module for Nuxt'
+position: 3
+category: Guide
+---
+
+## families
+
+Adding [Google font families](https://developers.google.com/fonts/docs/css2#quickstart_guides)
+
+Type: Object
+Default: {}
+
+```js{}[nuxt.config.js]
+googleFonts: {
+  families: {
+    Roboto: true,
+    'Josefin+Sans': true,
+    Lato: [100, 300],
+    Raleway: {
+      wght: [100, 400],
+      ital: [100]
+    },
+  }
+}
+```
+
+## display
+
+The [font-display property](https://developers.google.com/fonts/docs/css2#use_font-display) lets you control what happens while the font is still loading or otherwise unavailable.
+
+Type: String
+Default: null
+
+```js{}[nuxt.config.js]
+googleFonts: {
+  display: 'swap' // 'auto' | 'block' | 'swap' | 'fallback' | 'optional'
+}
+```
+
+## subsets
+
+Some of the fonts in the Google Font Directory support multiple scripts (like Latin, Cyrillic, and Greek for example). In order to [specify which subsets](https://developers.google.com/fonts/docs/getting_started#specifying_script_subsets) should be downloaded the subset parameter should be appended to the URL.
+
+Type: Array[String]|String
+Default: []
+
+```js{}[nuxt.config.js]
+googleFonts: {
+  subsets: 'greek'
+}
+```
+
+## prefetch
+
+This option injects [dns-prefetch](https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch) into the head of your project.
+
+```html
+<link rel =" dns-prefetch "href =" https://fonts.gstatic.com/ "/>
+```
+
+Type: Boolean
+Default: true
+
+```js{}[nuxt.config.js]
+googleFonts: {
+  prefetch: true
+}
+```
+
+## preconnect
+
+This option injects [preconnect](https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch#Best_practices) into the head of your project.
+
+```html
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+```
+
+Type: Boolean
+Default: true
+
+```js{}[nuxt.config.js]
+googleFonts: {
+  prefetch: true
+}
+```
+
+## preload
+
+This option injects [preload](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content) into the head of your project.
+
+```html
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto" />
+```
+
+Type: Boolean
+Default: true
+
+```js{}[nuxt.config.js]
+googleFonts: {
+  preload: true
+}
+```
+
+## useStylesheet
+
+This option injects useStylesheet into the head of your project which is recommended for projects that use the AMP module that removes scripts.
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto" />
+```
+
+Type: Boolean
+Default: false
+
+```js{}[nuxt.config.js]
+googleFonts: {
+  useStylesheet: false
+}
+```
