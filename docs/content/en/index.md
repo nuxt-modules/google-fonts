@@ -15,8 +15,8 @@ features:
   - Encode fonts to base64
 ---
 
-<img src="/preview.png" class="light-img" width="1280" height="640" alt=""/>
-<img src="/preview-dark.png" class="dark-img" width="1280" height="640" alt=""/>
+<img src="/preview.svg" class="light-img" width="1280" height="640" alt="google fonts module for nuxt"/>
+<img src="/preview-dark.svg" class="dark-img" width="1280" height="640" alt="google fonts module for nuxt"/>
 
 [Google Fonts Module](https://github.com/nuxt-community/google-fonts-module) for [NuxtJS](https://nuxtjs.org).
 
