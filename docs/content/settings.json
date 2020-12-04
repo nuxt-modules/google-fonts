@@ -1,6 +1,6 @@
 {
   "title": "Google Fonts",
-  "url": "https://google-fonts@nuxtjs.org",
+  "url": "https://google-fonts.nuxtjs.org",
   "logo": {
     "light": "/logo-light.svg",
     "dark": "/logo-dark.svg"
