@@ -1,3 +1,5 @@
+[![@nuxtjs/google-fonts](./docs/static/preview.svg)](https://google-fonts.nuxtjs.org)
+
 # @nuxtjs/google-fonts
 
 [![npm version][npm-version-src]][npm-version-href]
@@ -8,7 +10,8 @@
 
 > [Google Fonts](https://developers.google.com/fonts) module for [NuxtJS](https://nuxtjs.org)
 
-[📖 **Release Notes**](./CHANGELOG.md)
+- [📖 **Release Notes**](./CHANGELOG.md)
+- [📖 &nbsp;Documentation](https://google-fonts.nuxtjs.org)
 
 ## Features
 
@@ -21,6 +24,8 @@
 - [Add preload](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content)
 - Download css/fonts to local project (No need external resources)
 - Encode fonts to base64
+
+[📖 &nbsp;Read more](https://google-fonts.nuxtjs.org)
 
 ## Setup
 
@@ -60,6 +65,8 @@ export default {
 ```
 
 ## Options
+
+See [module options](https://google-fonts.nuxtjs.org/options).
 
 ### `families`
 
@@ -141,6 +148,8 @@ See https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content
 This option inject `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto" />` into your project header, recommended for projects that use the AMP module that removes scripts.
 
 ### `download`
+
+See [downloading Google Fonts](https://google-fonts.nuxtjs.org/downloading)
 
 - Type: `Boolean`
 - Default: `false`
