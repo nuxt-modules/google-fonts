@@ -1,0 +1,10 @@
+{
+  "title": "Google Fonts",
+  "url": "https://google-fonts.nuxtjs.org",
+  "logo": {
+    "light": "/logo-light.svg",
+    "dark": "/logo-dark.svg"
+  },
+  "github": "nuxt-community/google-fonts-module",
+  "twitter": "@nuxt_js"
+}
