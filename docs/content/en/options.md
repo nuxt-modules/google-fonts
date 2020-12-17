@@ -52,6 +52,23 @@ googleFonts: {
 }
 ```
 
+## text
+
+Oftentimes, when you want to use a web font on your site or application, you know in advance which letters you'll need.
+This often occurs when you're using a web font in a logo or heading. See https://developers.google.com/fonts/docs/css2#optimizing_your_font_requests
+
+In these cases, you should consider specifying a [text](https://developers.google.com/fonts/docs/css2#optimizing_your_font_requests).
+This allows Google Fonts to return a font file that's optimized for your request. In some cases, this can reduce the size of the font file by up to 90%.
+
+Type: String
+Default: null
+
+```js{}[nuxt.config.js]
+googleFonts: {
+  text: 'Hello world'
+}
+```
+
 ## prefetch
 
 This option injects [dns-prefetch](https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch) into the head of your project.
