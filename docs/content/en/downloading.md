@@ -43,7 +43,7 @@ Default: true
 ```js{}[nuxt.config.js]
 googleFonts: {
   download: true,
-  base64: true
+  inject: true
 }
 ```
 
