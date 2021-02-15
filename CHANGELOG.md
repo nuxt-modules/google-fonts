@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/nuxt-community/google-fonts/compare/v1.2.0...v1.3.0) (2021-02-15)
+
+
+### Features
+
+* text option ([#44](https://github.com/nuxt-community/google-fonts/issues/44)) ([6ee0056](https://github.com/nuxt-community/google-fonts/commit/6ee0056d10fbdb45e836b5fc950dae6f2b26f4b7))
+
 ## [1.2.0](https://github.com/nuxt-community/google-fonts/compare/v1.1.6...v1.2.0) (2020-11-10)
 
 
