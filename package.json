@@ -18,7 +18,7 @@
     "test": "yarn lint && jest"
   },
   "dependencies": {
-    "consola": "^2.15.0",
+    "consola": "^2.15.3",
     "google-fonts-helper": "^1.2.0"
   },
   "devDependencies": {
