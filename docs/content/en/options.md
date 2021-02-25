@@ -99,7 +99,7 @@ Default: true
 
 ```js{}[nuxt.config.js]
 googleFonts: {
-  prefetch: true
+  preconnect: true
 }
 ```
 
