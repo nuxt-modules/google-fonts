@@ -74,7 +74,7 @@ googleFonts: {
 This option injects [dns-prefetch](https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch) into the head of your project.
 
 ```html
-<link rel =" dns-prefetch "href =" https://fonts.gstatic.com/ "/>
+<link rel="dns-prefetch" href="https://fonts.gstatic.com/"/>
 ```
 
 Type: Boolean
@@ -99,7 +99,7 @@ Default: true
 
 ```js{}[nuxt.config.js]
 googleFonts: {
-  prefetch: true
+  preconnect: true
 }
 ```
 
