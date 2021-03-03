@@ -8,6 +8,7 @@ jest.mock('consola', () => ({
   info: jest.fn(),
   success: jest.fn(),
   debug: jest.fn(),
+  warn: jest.fn(),
   withTag: jest.fn().mockImplementation(() => mockReporter)
 }))
 
