@@ -23,7 +23,7 @@
   "dependencies": {
     "consola": "^2.15.3",
     "defu": "^3.2.2",
-    "google-fonts-helper": "^1.2.0"
+    "google-fonts-helper": "^2.0.1"
   },
   "devDependencies": {
     "@babel/preset-typescript": "latest",

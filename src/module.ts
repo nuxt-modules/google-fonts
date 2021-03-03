@@ -2,8 +2,7 @@ import { resolve } from 'path'
 import type { Module } from '@nuxt/types'
 import consola from 'consola'
 import defu from 'defu'
-import { GoogleFontsHelper } from 'google-fonts-helper'
-import { DownloadOptions, GoogleFonts } from 'google-fonts-helper/dist/types'
+import { GoogleFontsHelper, DownloadOptions, GoogleFonts } from 'google-fonts-helper'
 import { name, version } from '../package.json'
 
 const logger = consola.withTag('nuxt:google-fonts')
