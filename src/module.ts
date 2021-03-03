@@ -19,7 +19,7 @@ export interface ModuleOptions extends Partial<DownloadOptions & GoogleFonts> {
 const CONFIG_KEY = 'googleFonts'
 
 const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
-  const defaults: ModuleOptions = {
+  const DEFAULTS: ModuleOptions = {
     families: {},
     display: null,
     subsets: [],
@@ -43,7 +43,7 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
       this.options['google-fonts'],
       this.options[CONFIG_KEY],
       moduleOptions,
-      defaults
+      DEFAULTS
     )
 
     const googleFontsHelper = new GoogleFontsHelper({
