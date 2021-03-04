@@ -7,4 +7,6 @@ node_modules
 .DS_Store
 coverage
 dist
+sw.*
+.env
 test/fixture/download/assets

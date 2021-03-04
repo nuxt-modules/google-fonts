@@ -1,7 +1,7 @@
-module.exports = {
+export default {
   rootDir: __dirname,
   buildModules: [
-    { handler: require('../../../') }
+    '../../../src/module.ts'
   ],
   googleFonts: {
     download: true,

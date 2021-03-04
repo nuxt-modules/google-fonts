@@ -7,31 +7,36 @@
   "contributors": [
     "Ricardo Gobbo de Souza <ricardogobbosouza@yahoo.com.br>"
   ],
-  "main": "lib/module.js",
+  "main": "./dist/module.js",
+  "types": "./dist/module.d.ts",
   "files": [
-    "lib"
+    "dist"
   ],
   "scripts": {
-    "dev": "nuxt test/fixture/basic",
-    "lint": "eslint --ext .js,.vue .",
-    "release": "yarn test && standard-version && git push --follow-tags && npm publish",
-    "test": "yarn lint && jest"
+    "build": "siroc build",
+    "prepublishOnly": "yarn build",
+    "dev": "nuxt dev test/fixture/basic",
+    "lint": "eslint --ext .js,.ts,.vue .",
+    "release": "yarn test && yarn build && standard-version && git push --follow-tags && npm publish",
+    "test": "yarn lint && yarn jest"
   },
   "dependencies": {
     "consola": "^2.15.3",
-    "google-fonts-helper": "^1.2.0"
+    "defu": "^3.2.2",
+    "google-fonts-helper": "^2.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "latest",
-    "@commitlint/config-conventional": "latest",
-    "@nuxtjs/eslint-config": "latest",
-    "@nuxtjs/module-test-utils": "latest",
-    "core-js": "2",
+    "@babel/preset-typescript": "latest",
+    "@nuxt/test-utils": "latest",
+    "@nuxt/types": "latest",
+    "@nuxtjs/eslint-config-typescript": "latest",
+    "@types/jest": "latest",
+    "@types/node": "latest",
     "del": "latest",
     "eslint": "latest",
-    "husky": "latest",
     "jest": "latest",
-    "nuxt-edge": "latest",
+    "nuxt": "latest",
+    "siroc": "latest",
     "standard-version": "latest"
   },
   "publishConfig": {
