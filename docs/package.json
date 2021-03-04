@@ -2,10 +2,12 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxt/content-theme-docs": "latest",
+    "@nuxt/content-theme-docs": "^0.9.0",
     "nuxt": "latest"
   }
 }
