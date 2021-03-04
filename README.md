@@ -10,7 +10,7 @@
 
 > [Google Fonts](https://developers.google.com/fonts) module for [NuxtJS](https://nuxtjs.org)
 
-- [📖 **Release Notes**](./CHANGELOG.md)
+- [✨ &nbsp;Release Notes](https://google-fonts.nuxtjs.org/releases)
 - [📖 &nbsp;Documentation](https://google-fonts.nuxtjs.org)
 
 ## Features
