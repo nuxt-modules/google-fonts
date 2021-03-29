@@ -32,7 +32,7 @@ Then, add `@nuxtjs/google-fonts` to the `buildModules` section of `nuxt.config.j
 
 ```js[nuxt.config.js]
 {
-  modules: [
+  buildModules: [
     '@nuxtjs/google-fonts'
   ],
 }
