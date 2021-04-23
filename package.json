@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "consola": "^2.15.3",
-    "defu": "^3.2.2",
+    "defu": "^4.0.1",
     "google-fonts-helper": "^2.0.1"
   },
   "devDependencies": {
