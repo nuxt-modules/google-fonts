@@ -1,4 +1,9 @@
 module.exports = {
   preset: '@nuxt/test-utils',
-  collectCoverageFrom: ['src/**']
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'src/*.{js,ts}',
+    '!**/node_modules/**',
+    '!**/dist/**'
+  ]
 }

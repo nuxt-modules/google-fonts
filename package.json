@@ -7,35 +7,42 @@
   "contributors": [
     "Ricardo Gobbo de Souza <ricardogobbosouza@yahoo.com.br>"
   ],
-  "main": "./dist/module.js",
+  "exports": {
+    ".": {
+      "require": "./dist/module.cjs",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "module": "./dist/module.mjs",
   "types": "./dist/module.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "siroc build",
-    "prepublishOnly": "yarn build",
     "dev": "nuxt dev test/fixture/basic",
     "lint": "eslint --ext .js,.ts,.vue .",
+    "prepublishOnly": "yarn build",
     "release": "yarn test && yarn build && standard-version && git push --follow-tags && npm publish",
-    "test": "yarn lint && yarn jest"
+    "test": "yarn lint && jest"
   },
   "dependencies": {
     "consola": "^2.15.3",
-    "defu": "^3.2.2",
+    "defu": "^5.0.0",
     "google-fonts-helper": "^2.0.1"
   },
   "devDependencies": {
     "@babel/preset-typescript": "latest",
     "@nuxt/test-utils": "latest",
-    "@nuxt/types": "latest",
+    "@nuxt/types": "^2.15.8",
     "@nuxtjs/eslint-config-typescript": "latest",
     "@types/jest": "latest",
     "@types/node": "latest",
     "del": "latest",
     "eslint": "latest",
     "jest": "latest",
-    "nuxt": "latest",
+    "nuxt": "^2.15.8",
     "siroc": "latest",
     "standard-version": "latest"
   },

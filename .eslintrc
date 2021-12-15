@@ -1,5 +1,14 @@
 {
   "extends": [
     "@nuxtjs/eslint-config-typescript"
-  ]
+  ],
+  "rules": {
+    "import/named": 0,
+    "vue/multi-word-component-names": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": "./tsconfig.json"
+    }
+  }
 }

@@ -3,7 +3,6 @@ import type { Module } from '@nuxt/types'
 import consola from 'consola'
 import defu from 'defu'
 import { GoogleFontsHelper, DownloadOptions, GoogleFonts } from 'google-fonts-helper'
-import { name, version } from '../package.json'
 
 const logger = consola.withTag('nuxt:google-fonts')
 
@@ -38,6 +37,7 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
     fontsPath: '~assets/fonts'
   }
 
+  // @ts-ignore
   this.nuxt.hook('build:before', async () => {
     const options: ModuleOptions = defu(
       this.options['google-fonts'],
@@ -79,7 +79,9 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
 
     // download
     if (options.download) {
-      const outputDir = this.nuxt.resolver.resolveAlias(options.outputDir)
+      const outputDir = this.nuxt.resolver
+        ? this.nuxt.resolver.resolveAlias(options.outputDir)
+        : this.nuxt.options.alias[options.outputDir] || options.outputDir
 
       try {
         await GoogleFontsHelper.download(url, {
@@ -175,7 +177,7 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
   })
 }
 
-;(nuxtModule as any).meta = { name, version }
+;(nuxtModule as any).meta = require('../package.json')
 
 declare module '@nuxt/types' {
   interface NuxtConfig { [CONFIG_KEY]?: ModuleOptions } // Nuxt 2.14+
