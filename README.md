@@ -51,6 +51,17 @@ yarn add --dev @nuxtjs/google-fonts # or npm install --save-dev @nuxtjs/google-f
 
 :warning: If you are using Nuxt **< v2.9** you have to install the module as a `dependency` (No `--dev` or `--save-dev` flags) and use `modules` section in `nuxt.config.js` instead of `buildModules`.
 
+## Nuxt3
+Nuxt modules are now build-time-only, and the `buildModules` property used in Nuxt 2 is deprecated in favor of `modules`. Thus, you would add like so:
+
+```
+export default defineNuxtConfig({
+  modules: [
+    '@nuxtjs/google-fonts'
+  ]
+})
+```
+
 ## Development
 
 1. Clone this repository
