@@ -121,6 +121,13 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
         href: 'https://fonts.gstatic.com/',
         crossorigin: ''
       })
+      // Should also preconnect to origin of Google fonts stylesheet.
+      // @ts-ignore
+      this.options.head.link.push({
+        hid: 'gf-origin-preconnect',
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com/'
+      })
     }
 
     // https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content

@@ -11,9 +11,14 @@ describe('basic', () => {
     expect(body).toContain('<link data-n-head="ssr" data-hid="gf-prefetch" rel="dns-prefetch" href="https://fonts.gstatic.com/">')
   })
 
-  test('has preconnect link', async () => {
+  test('has preconnect link to font origin', async () => {
     const { body } = await get('/')
     expect(body).toContain('<link data-n-head="ssr" data-hid="gf-preconnect" rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">')
+  })
+
+  test('has preconnect link to font stylesheet origin', async () => {
+    const { body } = await get('/')
+    expect(body).toContain('<link data-n-head="ssr" data-hid="gf-origin-preconnect" rel="preconnect" href="https://fonts.googleapis.com/">')
   })
 
   test('has preload link', async () => {
