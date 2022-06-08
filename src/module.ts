@@ -26,7 +26,7 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
     text: null,
     prefetch: true,
     preconnect: true,
-    preload: true,
+    preload: false,
     useStylesheet: false,
     download: false,
     base64: false,

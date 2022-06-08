@@ -12,6 +12,7 @@ export default {
     families: {
       Roboto: true
     },
-    useStylesheet: true
+    useStylesheet: true,
+    preload: true
   }
 }
