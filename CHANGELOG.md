@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/nuxt-community/google-fonts/compare/v1.3.0...v2.0.0) (2022-06-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* default to font-display: swap unless preloading (#88)
+
+### Features
+
+* add preconnect hint for Google Fonts stylesheet ([#85](https://github.com/nuxt-community/google-fonts/issues/85)) ([bb8c6f2](https://github.com/nuxt-community/google-fonts/commit/bb8c6f2eb54d4ba2c9b453a9a5ddc4ab28ae46af))
+* default to font-display: swap unless preloading ([#88](https://github.com/nuxt-community/google-fonts/issues/88)) ([1e50410](https://github.com/nuxt-community/google-fonts/commit/1e504105d830db3bccaad83011926cb1a4768cd7))
+* turn on font stylesheet inlining by default ([#87](https://github.com/nuxt-community/google-fonts/issues/87)) ([8b53012](https://github.com/nuxt-community/google-fonts/commit/8b53012723bcf496b3168c63dc698008c73c8d1b))
+* typescript rewrite ([#54](https://github.com/nuxt-community/google-fonts/issues/54)) ([81259ca](https://github.com/nuxt-community/google-fonts/commit/81259ca0ba2cde941a66979fbb80372d9b20cd76))
+
+
+### Bug Fixes
+
+* docs typo and formatting ([#52](https://github.com/nuxt-community/google-fonts/issues/52)) ([2a7149d](https://github.com/nuxt-community/google-fonts/commit/2a7149d2f7c1bb0bec8045da19a0874678e61a69))
+* turn off preload tag option by default ([#86](https://github.com/nuxt-community/google-fonts/issues/86)) ([fa4d4e0](https://github.com/nuxt-community/google-fonts/commit/fa4d4e05314fac072f084ad12cf7581b1f4ab497))
+
 ## [1.3.0](https://github.com/nuxt-community/google-fonts/compare/v1.2.0...v1.3.0) (2021-02-15)
 
 
