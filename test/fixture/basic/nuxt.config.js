@@ -11,6 +11,7 @@ export default {
   googleFonts: {
     families: {
       Roboto: true
-    }
+    },
+    download: false
   }
 }
