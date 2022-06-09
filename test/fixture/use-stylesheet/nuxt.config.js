@@ -13,6 +13,7 @@ export default {
       Roboto: true
     },
     useStylesheet: true,
-    download: false
+    download: false,
+    preload: true
   }
 }
