@@ -4,7 +4,6 @@ export default {
     '../../../src/module.ts'
   ],
   googleFonts: {
-    download: true,
     families: {
       Roboto: true
     }
