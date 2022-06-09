@@ -21,7 +21,7 @@ const CONFIG_KEY = 'googleFonts'
 const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
   const DEFAULTS: ModuleOptions = {
     families: {},
-    display: null,
+    display: null, // set to 'swap' later if no preload or user value
     subsets: [],
     text: null,
     prefetch: true,
@@ -45,6 +45,12 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
       moduleOptions,
       DEFAULTS
     )
+
+    // If user hasn't set the display value manually and isn't using
+    // a preload, set the default display value to 'swap'
+    if (!options.display && !options.preload) {
+      options.display = 'swap'
+    }
 
     const googleFontsHelper = new GoogleFontsHelper({
       families: options.families,

@@ -26,6 +26,11 @@ describe('use stylesheet', () => {
     expect(body).toContain('<link data-n-head="ssr" data-hid="gf-style" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
   })
 
+  test('has stylesheet that does not contain display swap', async () => {
+    const { body } = await get('/')
+    expect(body).not.toContain('display=swap')
+  })
+
   test('no has script', async () => {
     const { body } = await get('/')
     expect(body).not.toContain('data-hid="gf-script"')
