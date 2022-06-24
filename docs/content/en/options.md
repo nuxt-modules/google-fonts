@@ -31,13 +31,15 @@ googleFonts: {
 The [font-display property](https://developers.google.com/fonts/docs/css2#use_font-display) lets you control what happens while the font is still loading or otherwise unavailable.
 
 Type: String
-Default: null
+Default: 'swap'
 
 ```js{}[nuxt.config.js]
 googleFonts: {
   display: 'swap' // 'auto' | 'block' | 'swap' | 'fallback' | 'optional'
 }
 ```
+
+Note: manually enabling the `preload` option will turn off 'swap' by default.
 
 ## subsets
 
@@ -112,7 +114,7 @@ This option injects [preload](https://developer.mozilla.org/pt-BR/docs/Web/HTML/
 ```
 
 Type: Boolean
-Default: true
+Default: false
 
 ```js{}[nuxt.config.js]
 googleFonts: {
