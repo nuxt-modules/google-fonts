@@ -85,8 +85,7 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
 
     // download
     if (options.download) {
-      const outputDir = this.nuxt.resolver.resolveAlias(options.outputDir)
-
+      const outputDir = this.nuxt.resolver ? this.nuxt.resolver.resolveAlias(options.outputDir) : `${this.nuxt.options.srcDir}/${options.outputDir}`
       try {
         await GoogleFontsHelper.download(url, {
           base64: options.base64,
