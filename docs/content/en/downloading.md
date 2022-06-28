@@ -10,7 +10,7 @@ category: Guide
 With this option you can download css and google sources for your local project. This means that your project will not depend on these external resources.
 
 Type: Boolean
-Default: false
+Default: true
 
 ```js{}[nuxt.config.js]
 googleFonts: {
