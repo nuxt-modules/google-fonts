@@ -1,13 +1,9 @@
-import { resolve } from 'path'
-import type { Module } from '@nuxt/types'
-import consola from 'consola'
-import defu from 'defu'
-import { GoogleFontsHelper, DownloadOptions, GoogleFonts } from 'google-fonts-helper'
+import { resolve } from 'pathe'
+import { defineNuxtModule, resolvePath, useLogger } from '@nuxt/kit'
+import { constructURL, download, isValidURL, parse, merge, DownloadOptions, GoogleFonts } from 'google-fonts-helper'
 import { name, version } from '../package.json'
 
-const logger = consola.withTag('nuxt:google-fonts')
-
-export interface ModuleOptions extends Partial<DownloadOptions & GoogleFonts> {
+export interface ModuleOptions extends DownloadOptions, GoogleFonts {
   prefetch?: boolean;
   preconnect?: boolean;
   preload?: boolean;
@@ -16,14 +12,17 @@ export interface ModuleOptions extends Partial<DownloadOptions & GoogleFonts> {
   inject?: boolean;
 }
 
-const CONFIG_KEY = 'googleFonts'
-
-const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
-  const DEFAULTS: ModuleOptions = {
+export default defineNuxtModule<ModuleOptions>({
+  meta: {
+    name,
+    version,
+    configKey: 'googleFonts'
+  },
+  defaults: nuxt => ({
     families: {},
-    display: null, // set to 'swap' later if no preload or user value
+    display: undefined, // set to 'swap' later if no preload or user value
     subsets: [],
-    text: null,
+    text: undefined,
     prefetch: true,
     preconnect: true,
     preload: false,
@@ -32,167 +31,129 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
     base64: false,
     inject: true,
     overwriting: false,
-    outputDir: this.options.dir.assets,
+    outputDir: nuxt.options.dir.assets,
     stylePath: 'css/fonts.css',
     fontsDir: 'fonts',
     fontsPath: '~assets/fonts'
-  }
+  }),
+  setup (moduleOptions, nuxt) {
+    const logger = useLogger('nuxt:google-fonts')
 
-  this.nuxt.hook('build:before', async () => {
-    const options: ModuleOptions = defu(
-      this.options['google-fonts'],
-      this.options[CONFIG_KEY],
-      moduleOptions,
-      DEFAULTS
-    )
-
-    // If user hasn't set the display value manually and isn't using
-    // a preload, set the default display value to 'swap'
-    if (!options.display && !options.preload) {
-      options.display = 'swap'
-    }
-
-    const googleFontsHelper = new GoogleFontsHelper({
-      families: options.families,
-      display: options.display,
-      subsets: options.subsets,
-      text: options.text
-    })
-
-    // merge fonts from valid head link
-    // @ts-ignore
-    const fontsParsed = (this.options.head.link || [])
-      .filter(link => GoogleFontsHelper.isValidURL(link.href))
-      .map(link => GoogleFontsHelper.parse(link.href))
-
-    if (fontsParsed.length) {
-      googleFontsHelper.merge(...fontsParsed)
-    }
-
-    // construct google fonts url
-    const url = googleFontsHelper.constructURL()
-
-    if (!url) {
-      logger.warn('No provided fonts.')
-
-      return
-    }
-
-    // remove fonts
-    // @ts-ignore
-    this.options.head.link = (this.options.head.link || [])
-      .filter(link => !GoogleFontsHelper.isValidURL(link.href))
-
-    // download
-    if (options.download) {
-      const outputDir = this.nuxt.resolver.resolveAlias(options.outputDir)
-
-      try {
-        await GoogleFontsHelper.download(url, {
-          base64: options.base64,
-          overwriting: options.overwriting,
-          outputDir,
-          stylePath: options.stylePath,
-          fontsDir: options.fontsDir,
-          fontsPath: options.fontsPath
-        })
-
-        if (options.inject) {
-          this.options.css.push(resolve(outputDir, options.stylePath))
-        }
-      } catch (e) { /* istanbul ignore next */
-        logger.error(e)
+    nuxt.hook('build:before', async () => {
+      // If user hasn't set the display value manually and isn't using
+      // a preload, set the default display value to 'swap'
+      if (moduleOptions.display === undefined && !moduleOptions.preload) {
+        moduleOptions.display = 'swap'
       }
 
-      return
-    }
+      // merge fonts from valid head link
+      const fontsParsed = nuxt.options.head.link!
+        .filter(link => isValidURL(link.href))
+        .map(link => parse(link.href))
 
-    // https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch
-    if (options.prefetch) {
-      // @ts-ignore
-      this.options.head.link.push({
-        hid: 'gf-prefetch',
-        rel: 'dns-prefetch',
-        href: 'https://fonts.gstatic.com/'
+      // construct google fonts url
+      const url = constructURL(fontsParsed.length ? merge(moduleOptions, ...fontsParsed) : moduleOptions)
+
+      if (!url) {
+        logger.warn('No provided fonts.')
+
+        return
+      }
+
+      // remove fonts
+      nuxt.options.head.link = nuxt.options.head.link!.filter(link => !isValidURL(link.href))
+
+      // download
+      if (moduleOptions.download) {
+        const outputDir = await resolvePath(moduleOptions.outputDir)
+
+        try {
+          const downloader = download(url, {
+            base64: moduleOptions.base64,
+            overwriting: moduleOptions.overwriting,
+            outputDir,
+            stylePath: moduleOptions.stylePath,
+            fontsDir: moduleOptions.fontsDir,
+            fontsPath: moduleOptions.fontsPath
+          })
+
+          await downloader.execute()
+
+          if (moduleOptions.inject) {
+            nuxt.options.css.push(resolve(outputDir, moduleOptions.stylePath))
+          }
+        } catch (e) {
+          logger.error(e)
+        }
+
+        return
+      }
+
+      // https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch
+      if (moduleOptions.prefetch) {
+        nuxt.options.head.link.push({
+          hid: 'gf-prefetch',
+          rel: 'dns-prefetch',
+          href: 'https://fonts.gstatic.com/'
+        })
+      }
+
+      // https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch#Best_practices
+      // connect to domain of font files
+      if (moduleOptions.preconnect) {
+        nuxt.options.head.link.push({
+          hid: 'gf-preconnect',
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com/',
+          crossorigin: ''
+        })
+
+        // Should also preconnect to origin of Google fonts stylesheet.
+        nuxt.options.head.link.push({
+          hid: 'gf-origin-preconnect',
+          rel: 'preconnect',
+          href: 'https://fonts.googleapis.com/'
+        })
+      }
+
+      // https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content
+      // optionally increase loading priority
+      if (moduleOptions.preload) {
+        nuxt.options.head.link.push({
+          hid: 'gf-preload',
+          rel: 'preload',
+          as: 'style',
+          href: url
+        })
+      }
+
+      // append CSS
+      if (moduleOptions.useStylesheet) {
+        // @ts-ignore
+        nuxt.options.head.link.push({
+          hid: 'gf-style',
+          rel: 'stylesheet',
+          href: url
+        })
+
+        return
+      }
+
+      // JS to inject CSS
+      nuxt.options.head.script!.push({
+        hid: 'gf-script',
+        innerHTML: `(function(){var l=document.createElement('link');l.rel="stylesheet";l.href="${url}";document.querySelector("head").appendChild(l);})();`
       })
-    }
 
-    // https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch#Best_practices
-    // connect to domain of font files
-    if (options.preconnect) {
-      // @ts-ignore
-      this.options.head.link.push({
-        hid: 'gf-preconnect',
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com/',
-        crossorigin: ''
-      })
-      // Should also preconnect to origin of Google fonts stylesheet.
-      // @ts-ignore
-      this.options.head.link.push({
-        hid: 'gf-origin-preconnect',
-        rel: 'preconnect',
-        href: 'https://fonts.googleapis.com/'
-      })
-    }
-
-    // https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content
-    // optionally increase loading priority
-    if (options.preload) {
-      // @ts-ignore
-      this.options.head.link.push({
-        hid: 'gf-preload',
-        rel: 'preload',
-        as: 'style',
-        href: url
-      })
-    }
-
-    // append CSS
-    if (options.useStylesheet) {
-      // @ts-ignore
-      this.options.head.link.push({
-        hid: 'gf-style',
-        rel: 'stylesheet',
-        href: url
+      // no-JS fallback
+      nuxt.options.head.noscript!.push({
+        hid: 'gf-noscript',
+        innerHTML: `<link rel="stylesheet" href="${url}">`
       })
 
-      return
-    }
-
-    // JS to inject CSS
-    // @ts-ignore
-    this.options.head.script = this.options.head.script || []
-    // @ts-ignore
-    this.options.head.script.push({
-      hid: 'gf-script',
-      innerHTML: `(function(){var l=document.createElement('link');l.rel="stylesheet";l.href="${url}";document.querySelector("head").appendChild(l);})();`
+      // Disable sanitazions
+      nuxt.options.head.__dangerouslyDisableSanitizersByTagID!['gf-script'] = ['innerHTML']
+      nuxt.options.head.__dangerouslyDisableSanitizersByTagID!['gf-noscript'] = ['innerHTML']
     })
-
-    // no-JS fallback
-    // @ts-ignore
-    this.options.head.noscript = this.options.head.noscript || []
-    // @ts-ignore
-    this.options.head.noscript.push({
-      hid: 'gf-noscript',
-      innerHTML: `<link rel="stylesheet" href="${url}">`
-    })
-
-    // Disable sanitazions
-    // @ts-ignore
-    this.options.head.__dangerouslyDisableSanitizersByTagID = this.options.head.__dangerouslyDisableSanitizersByTagID || {}
-    // @ts-ignore
-    this.options.head.__dangerouslyDisableSanitizersByTagID['gf-script'] = ['innerHTML']
-    // @ts-ignore
-    this.options.head.__dangerouslyDisableSanitizersByTagID['gf-noscript'] = ['innerHTML']
-  })
-}
-
-;(nuxtModule as any).meta = { name, version }
-
-declare module '@nuxt/types' {
-  interface NuxtConfig { [CONFIG_KEY]?: ModuleOptions } // Nuxt 2.14+
-  interface Configuration { [CONFIG_KEY]?: ModuleOptions } // Nuxt 2.9 - 2.13
-}
-
-export default nuxtModule
+  }
+})

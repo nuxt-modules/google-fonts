@@ -15,31 +15,30 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        node: [12, 14]
+        node: [14, 16, 18]
 
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: cache node_modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+      - run: corepack enable
 
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "pnpm"
+
+      - name: Install
+        run: pnpm install
+
+      - name: Prepare TypeScript environment
+        run: yarn dev:prepare
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
 
       - name: Test
-        run: yarn test
+        run: pnpm test
 
       - name: Coverage
         uses: codecov/codecov-action@v3
