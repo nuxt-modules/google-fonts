@@ -229,9 +229,9 @@ export default defineNuxtModule<ModuleOptions>({
       children: `(function(){
         var h=document.querySelector("head");
         var m=h.querySelector('meta[name="head:count"]');
-        if(!m){m=document.createElement('meta');m.setAttribute('name','head:count');m.setAttribute('content','1');h.append(m)}
-        else{m.setAttribute('content',Number(m.getAttribute('content'))+1)}
-        var l=document.createElement('link');l.rel='stylesheet';l.href='${url}';h.appendChild(l)
+        if(m){m.setAttribute('content',Number(m.getAttribute('content'))+1);}
+        else{m=document.createElement('meta');m.setAttribute('name','head:count');m.setAttribute('content','1');h.append(m);}
+        var l=document.createElement('link');l.rel='stylesheet';l.href='${url}';h.appendChild(l);
       })();`
     })
 
