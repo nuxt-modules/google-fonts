@@ -2,10 +2,9 @@ lockfileVersion: 5.4
 
 specifiers:
   '@nuxt/kit': ^3.0.0-rc.4
-  '@nuxt/module-builder': ^0.1.7
+  '@nuxt/module-builder': latest
   '@nuxt/test-utils': ^3.0.0-rc.4
   '@nuxtjs/eslint-config-typescript': latest
-  '@vueuse/head': ^0.7.6
   consola: ^2.15.3
   del: latest
   eslint: latest
@@ -16,7 +15,6 @@ specifiers:
 
 dependencies:
   '@nuxt/kit': 3.0.0-rc.4
-  '@vueuse/head': 0.7.6
   consola: 2.15.3
   google-fonts-helper: 3.1.0
   pathe: 0.3.2
@@ -1177,12 +1175,6 @@ packages:
   /@vue/shared/3.2.37:
     resolution: {integrity: sha512-4rSJemR2NQIo9Klm1vabqWjD8rs/ZaJSzMxkMNeJS6lHiUjjUeYFbooN19NgFjztubEKh3WlZUeOLVdbbUWHsw==}
     dev: true
-
-  /@vueuse/head/0.7.6:
-    resolution: {integrity: sha512-cOWqCkT3WiF5oEpw+VVEWUJd9RLD5rc7DmnFp3cePsejp+t7686uKD9Z9ZU7Twb7R/BI8iexKTmXo9D/F3v6UA==}
-    peerDependencies:
-      vue: '>=3'
-    dev: false
 
   /@vueuse/head/0.7.6_vue@3.2.37:
     resolution: {integrity: sha512-cOWqCkT3WiF5oEpw+VVEWUJd9RLD5rc7DmnFp3cePsejp+t7686uKD9Z9ZU7Twb7R/BI8iexKTmXo9D/F3v6UA==}
