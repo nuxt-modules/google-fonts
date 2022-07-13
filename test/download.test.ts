@@ -1,21 +1,20 @@
 import { join } from 'path'
-import { sync } from 'del'
-import { setupTest, getNuxt } from '@nuxt/test-utils'
+import { describe, test, expect, afterAll } from 'vitest'
+import { setup, useTestContext } from '@nuxt/test-utils'
+import del from 'del'
 
-describe('download', () => {
-  setupTest({
-    build: true,
+describe('download', async () => {
+  await setup({
+    server: false,
     fixture: 'fixture/download'
   })
 
-  afterAll(() => {
-    const { options } = getNuxt()
-    sync(join(options.srcDir, options.dir.assets))
+  test('render', () => {
+    expect(useTestContext().nuxt?.options.css).toHaveLength(1)
+    expect(useTestContext().nuxt?.options.css[0]).toContain('nuxt-google-fonts.css')
   })
 
-  test('render', () => {
-    const { options } = getNuxt()
-    expect(options.css).toHaveLength(1)
-    expect(options.css[0]).toContain('fonts.css')
+  afterAll(async () => {
+    await del(join(useTestContext().nuxt?.options.rootDir || '', 'node_modules'))
   })
 })

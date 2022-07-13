@@ -1,11 +1,13 @@
-export default {
-  rootDir: __dirname,
-  buildModules: [
-    '../../../src/module.ts'
+import { defineNuxtConfig } from 'nuxt'
+import GoogleFontsModule from '../../../src/module'
+
+export default defineNuxtConfig({
+  modules: [
+    GoogleFontsModule
   ],
   googleFonts: {
     families: {
       Roboto: true
     }
   }
-}
+})
