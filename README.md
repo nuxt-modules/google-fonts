@@ -36,8 +36,8 @@ You can contribute to this module online with CodeSandBox:
 Or locally:
 
 1. Clone this repository
-2. Install dependencies using `pnpm install`
-3. Start development server using `pnpm dev`
+2. Install dependencies using `yarn install`
+3. Start development server using `yarn dev`
 
 ## License
 

@@ -3,10 +3,10 @@ name: ci
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   ci:
@@ -18,27 +18,30 @@ jobs:
         node: [14, 16, 18]
 
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-
-      - run: corepack enable
-
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: "pnpm"
 
-      - name: Install
-        run: pnpm install
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+
+      - name: Install dependencies
+        run: yarn
 
       - name: Prepare TypeScript environment
         run: yarn dev:prepare
 
       - name: Lint
-        run: pnpm lint
+        run: yarn lint
 
       - name: Test
-        run: pnpm test
+        run: yarn test
 
       - name: Coverage
         uses: codecov/codecov-action@v3

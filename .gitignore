@@ -9,4 +9,5 @@ coverage
 dist
 sw.*
 .env
+.output
 test/fixture/download/assets
