@@ -45,11 +45,20 @@ export default defineNuxtModule<ModuleOptions>({
       options.display = 'swap'
     }
 
+    const fontsParsed = []
+
     // merge fonts from valid head link
-    const fontsParsed = nuxt.options.app.head.link?.filter(link => isValidURL(link.href)).map(link => parse(link.href))
+    if (isNuxt2()) {
+      nuxt.options.head = nuxt.options.head || {}
+      nuxt.options.head.link = nuxt.options.head.link || []
+      fontsParsed.push(...nuxt.options.head.link.filter(link => isValidURL(link.href)).map(link => parse(link.href)))
+    } else {
+      nuxt.options.app.head.link = nuxt.options.app.head.link || []
+      fontsParsed.push(...nuxt.options.app.head.link.filter(link => isValidURL(link.href)).map(link => parse(link.href)))
+    }
 
     // construct google fonts url
-    const url = constructURL(fontsParsed && fontsParsed.length ? merge(options, ...fontsParsed) : options)
+    const url = constructURL(merge(options, ...fontsParsed))
 
     if (!url) {
       logger.warn('No provided fonts.')
@@ -226,6 +235,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     // JS to inject CSS
     nuxt.options.app.head.script.unshift({
+      'data-hid': 'gf-script',
       children: `(function(){
         var h=document.querySelector("head");
         var m=h.querySelector('meta[name="head:count"]');
