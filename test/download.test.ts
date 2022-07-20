@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { fileURLToPath } from 'url'
 import { describe, test, expect, afterAll } from 'vitest'
 import { setup, useTestContext } from '@nuxt/test-utils'
 import del from 'del'
@@ -15,6 +15,6 @@ describe('download', async () => {
   })
 
   afterAll(async () => {
-    await del(join(useTestContext().nuxt?.options.rootDir || '', 'node_modules'))
+    await del(fileURLToPath(new URL('./fixture/download/node_modules', import.meta.url)))
   })
 })
