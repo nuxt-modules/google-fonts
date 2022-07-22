@@ -4,7 +4,23 @@ import { setup, $fetch } from '@nuxt/test-utils'
 describe('use stylesheet', async () => {
   await setup({
     server: true,
-    fixture: 'fixture/use-stylesheet'
+    nuxtConfig: {
+      app: {
+        head: {
+          link: [
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato' }
+          ]
+        }
+      },
+      googleFonts: {
+        families: {
+          Roboto: true
+        },
+        useStylesheet: true,
+        download: false,
+        preload: true
+      }
+    }
   })
 
   test('has prefetch link', async () => {

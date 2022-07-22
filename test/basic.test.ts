@@ -3,7 +3,21 @@ import { setup, $fetch } from '@nuxt/test-utils'
 
 describe('basic', async () => {
   await setup({
-    fixture: 'fixture/basic'
+    nuxtConfig: {
+      app: {
+        head: {
+          link: [
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato' }
+          ]
+        }
+      },
+      googleFonts: {
+        families: {
+          Roboto: true
+        },
+        download: false
+      }
+    }
   })
 
   test('has prefetch link', async () => {

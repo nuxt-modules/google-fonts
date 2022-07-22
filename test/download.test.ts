@@ -6,7 +6,13 @@ import del from 'del'
 describe('download', async () => {
   await setup({
     server: false,
-    fixture: 'fixture/download'
+    nuxtConfig: {
+      googleFonts: {
+        families: {
+          Roboto: true
+        }
+      }
+    }
   })
 
   test('render', () => {

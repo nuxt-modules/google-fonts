@@ -18,8 +18,7 @@ const logger = mockLogger()
 
 describe('warn', async () => {
   await setup({
-    server: false,
-    fixture: 'fixture/warn'
+    server: false
   })
 
   test('should warn if no provided fonts', () => {

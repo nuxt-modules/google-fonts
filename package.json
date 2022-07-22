@@ -8,6 +8,7 @@
     "Ricardo Gobbo de Souza <ricardogobbosouza@yahoo.com.br>"
   ],
   "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
       "require": "./dist/module.cjs",
@@ -26,11 +27,10 @@
     "lint": "eslint --ext .js,.ts,.vue",
     "prepack": "yarn build",
     "release": "yarn test && standard-version && git push --follow-tags && npm publish",
-    "test": "yarn lint && vitest run"
+    "test": "yarn lint && nuxi test --coverage"
   },
   "dependencies": {
     "@nuxt/kit": "^3.0.0-rc.6",
-    "consola": "^2.15.3",
     "google-fonts-helper": "^3.1.0",
     "pathe": "^0.3.2"
   },
@@ -38,16 +38,14 @@
     "@nuxt/module-builder": "latest",
     "@nuxt/test-utils": "^3.0.0-rc.6",
     "@nuxtjs/eslint-config-typescript": "latest",
+    "c8": "latest",
     "del": "latest",
     "eslint": "latest",
     "nuxt": "^3.0.0-rc.6",
     "standard-version": "latest",
-    "vitest": "^0.18.0"
+    "vitest": "latest"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "resolutions": {
-    "vite": "2.9.14"
   }
 }
