@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-0](https://github.com/nuxt-community/google-fonts/compare/v2.0.0...v3.0.0-0) (2022-07-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* add support for nuxt 3/nuxt bridge (#94)
+
+### Features
+
+* add support for nuxt 3/nuxt bridge ([#94](https://github.com/nuxt-community/google-fonts/issues/94)) ([fbe5d77](https://github.com/nuxt-community/google-fonts/commit/fbe5d77e16989852615e3f81d33beff2e8d45094))
+
 ## [2.0.0](https://github.com/nuxt-community/google-fonts/compare/v1.3.0...v2.0.0) (2022-06-09)
 
 
