@@ -1,29 +1,30 @@
-import { resolve } from 'path'
-import type { Module } from '@nuxt/types'
-import consola from 'consola'
-import defu from 'defu'
-import { GoogleFontsHelper, DownloadOptions, GoogleFonts } from 'google-fonts-helper'
+import { resolve } from 'pathe'
+import { defineNuxtModule, isNuxt2, resolvePath, useLogger } from '@nuxt/kit'
+import { constructURL, download, isValidURL, parse, merge, DownloadOptions, GoogleFonts } from 'google-fonts-helper'
 import { name, version } from '../package.json'
 
-const logger = consola.withTag('nuxt:google-fonts')
-
-export interface ModuleOptions extends Partial<DownloadOptions & GoogleFonts> {
-  prefetch?: boolean;
-  preconnect?: boolean;
-  preload?: boolean;
-  useStylesheet?: boolean;
-  download?: boolean;
-  inject?: boolean;
+export interface ModuleOptions extends DownloadOptions, GoogleFonts {
+  prefetch?: boolean
+  preconnect?: boolean
+  preload?: boolean
+  useStylesheet?: boolean
+  download?: boolean
+  inject?: boolean
 }
 
-const CONFIG_KEY = 'googleFonts'
+const logger = useLogger('nuxt:google-fonts')
 
-const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
-  const DEFAULTS: ModuleOptions = {
+export default defineNuxtModule<ModuleOptions>({
+  meta: {
+    name,
+    version,
+    configKey: 'googleFonts'
+  },
+  defaults: {
     families: {},
-    display: null, // set to 'swap' later if no preload or user value
+    display: undefined, // set to 'swap' later if no preload or user value
     subsets: [],
-    text: null,
+    text: undefined,
     prefetch: true,
     preconnect: true,
     preload: false,
@@ -32,45 +33,32 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
     base64: false,
     inject: true,
     overwriting: false,
-    outputDir: this.options.dir.assets,
-    stylePath: 'css/fonts.css',
+    outputDir: 'node_modules/.cache/nuxt-google-fonts',
+    stylePath: 'css/nuxt-google-fonts.css',
     fontsDir: 'fonts',
-    fontsPath: '~assets/fonts'
-  }
-
-  this.nuxt.hook('build:before', async () => {
-    const options: ModuleOptions = defu(
-      this.options['google-fonts'],
-      this.options[CONFIG_KEY],
-      moduleOptions,
-      DEFAULTS
-    )
-
+    fontsPath: '../fonts'
+  },
+  async setup (options, nuxt) {
     // If user hasn't set the display value manually and isn't using
     // a preload, set the default display value to 'swap'
-    if (!options.display && !options.preload) {
+    if (options.display === undefined && !options.preload) {
       options.display = 'swap'
     }
 
-    const googleFontsHelper = new GoogleFontsHelper({
-      families: options.families,
-      display: options.display,
-      subsets: options.subsets,
-      text: options.text
-    })
+    const fontsParsed = []
 
     // merge fonts from valid head link
-    // @ts-ignore
-    const fontsParsed = (this.options.head.link || [])
-      .filter(link => GoogleFontsHelper.isValidURL(link.href))
-      .map(link => GoogleFontsHelper.parse(link.href))
-
-    if (fontsParsed.length) {
-      googleFontsHelper.merge(...fontsParsed)
+    if (isNuxt2()) {
+      nuxt.options.head = nuxt.options.head || {}
+      nuxt.options.head.link = nuxt.options.head.link || []
+      fontsParsed.push(...nuxt.options.head.link.filter(link => isValidURL(link.href)).map(link => parse(link.href)))
+    } else {
+      nuxt.options.app.head.link = nuxt.options.app.head.link || []
+      fontsParsed.push(...nuxt.options.app.head.link.filter(link => isValidURL(link.href)).map(link => parse(link.href)))
     }
 
     // construct google fonts url
-    const url = googleFontsHelper.constructURL()
+    const url = constructURL(merge(options, ...fontsParsed))
 
     if (!url) {
       logger.warn('No provided fonts.')
@@ -79,16 +67,21 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
     }
 
     // remove fonts
-    // @ts-ignore
-    this.options.head.link = (this.options.head.link || [])
-      .filter(link => !GoogleFontsHelper.isValidURL(link.href))
+    if (isNuxt2()) {
+      nuxt.options.head = nuxt.options.head || {}
+      nuxt.options.head.link = nuxt.options.head.link || []
+      nuxt.options.head.link = nuxt.options.head.link.filter(link => !isValidURL(link.href))
+    } else {
+      nuxt.options.app.head.link = nuxt.options.app.head.link || []
+      nuxt.options.app.head.link = nuxt.options.app.head.link.filter(link => !isValidURL(link.href))
+    }
 
     // download
     if (options.download) {
-      const outputDir = this.nuxt.resolver.resolveAlias(options.outputDir)
+      const outputDir = await resolvePath(options.outputDir)
 
       try {
-        await GoogleFontsHelper.download(url, {
+        const downloader = download(url, {
           base64: options.base64,
           overwriting: options.overwriting,
           outputDir,
@@ -97,51 +90,133 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
           fontsPath: options.fontsPath
         })
 
+        await downloader.execute()
+
         if (options.inject) {
-          this.options.css.push(resolve(outputDir, options.stylePath))
+          nuxt.options.css.push(resolve(outputDir, options.stylePath))
         }
-      } catch (e) { /* istanbul ignore next */
+
+        // Add the nuxt google fonts directory
+        nuxt.options.nitro = nuxt.options.nitro || {}
+        nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
+        nuxt.options.nitro.publicAssets.push({ dir: outputDir })
+      } catch (e) {
         logger.error(e)
       }
 
       return
     }
 
+    if (isNuxt2()) {
+      nuxt.options.head = nuxt.options.head || {}
+      nuxt.options.head.link = nuxt.options.head.link || []
+      nuxt.options.head.script = nuxt.options.head.script || []
+      nuxt.options.head.noscript = nuxt.options.head.noscript || []
+      nuxt.options.head.__dangerouslyDisableSanitizersByTagID = nuxt.options.head.__dangerouslyDisableSanitizersByTagID || {}
+
+      // https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch
+      if (options.prefetch) {
+        nuxt.options.head.link.push({
+          hid: 'gf-prefetch',
+          rel: 'dns-prefetch',
+          href: 'https://fonts.gstatic.com/'
+        })
+      }
+
+      // https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch#Best_practices
+      if (options.preconnect) {
+        nuxt.options.head.link.push(
+          // connect to domain of font files
+          {
+            hid: 'gf-preconnect',
+            rel: 'preconnect',
+            href: 'https://fonts.gstatic.com/',
+            crossorigin: 'anonymous'
+          },
+
+          // Should also preconnect to origin of Google fonts stylesheet.
+          {
+            hid: 'gf-origin-preconnect',
+            rel: 'preconnect',
+            href: 'https://fonts.googleapis.com/'
+          }
+        )
+      }
+
+      // https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content
+      // optionally increase loading priority
+      if (options.preload) {
+        nuxt.options.head.link.push({
+          hid: 'gf-preload',
+          rel: 'preload',
+          as: 'style',
+          href: url
+        })
+      }
+
+      // append CSS
+      if (options.useStylesheet) {
+        nuxt.options.head.link.push({
+          hid: 'gf-style',
+          rel: 'stylesheet',
+          href: url
+        })
+
+        return
+      }
+
+      // JS to inject CSS
+      nuxt.options.head.script.push({
+        hid: 'gf-script',
+        innerHTML: `(function(){var l=document.createElement('link');l.rel="stylesheet";l.href="${url}";document.querySelector("head").appendChild(l);})();`
+      })
+
+      // no-JS fallback
+      nuxt.options.head.noscript.push({
+        hid: 'gf-noscript',
+        innerHTML: `<link rel="stylesheet" href="${url}">`
+      })
+
+      // Disable sanitazions
+      nuxt.options.head.__dangerouslyDisableSanitizersByTagID['gf-script'] = ['innerHTML']
+      nuxt.options.head.__dangerouslyDisableSanitizersByTagID['gf-noscript'] = ['innerHTML']
+
+      return
+    }
+
+    nuxt.options.app.head.link = nuxt.options.app.head.link || []
+    nuxt.options.app.head.script = nuxt.options.app.head.script || []
+
     // https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch
     if (options.prefetch) {
-      // @ts-ignore
-      this.options.head.link.push({
-        hid: 'gf-prefetch',
+      nuxt.options.app.head.link.push({
         rel: 'dns-prefetch',
         href: 'https://fonts.gstatic.com/'
       })
     }
 
     // https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch#Best_practices
-    // connect to domain of font files
     if (options.preconnect) {
-      // @ts-ignore
-      this.options.head.link.push({
-        hid: 'gf-preconnect',
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com/',
-        crossorigin: ''
-      })
-      // Should also preconnect to origin of Google fonts stylesheet.
-      // @ts-ignore
-      this.options.head.link.push({
-        hid: 'gf-origin-preconnect',
-        rel: 'preconnect',
-        href: 'https://fonts.googleapis.com/'
-      })
+      nuxt.options.app.head.link.push(
+        // connect to domain of font files
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com/',
+          crossorigin: 'anonymous'
+        },
+
+        // Should also preconnect to origin of Google fonts stylesheet.
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.googleapis.com/'
+        }
+      )
     }
 
     // https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content
     // optionally increase loading priority
     if (options.preload) {
-      // @ts-ignore
-      this.options.head.link.push({
-        hid: 'gf-preload',
+      nuxt.options.app.head.link.push({
         rel: 'preload',
         as: 'style',
         href: url
@@ -150,9 +225,7 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
 
     // append CSS
     if (options.useStylesheet) {
-      // @ts-ignore
-      this.options.head.link.push({
-        hid: 'gf-style',
+      nuxt.options.app.head.link.push({
         rel: 'stylesheet',
         href: url
       })
@@ -161,38 +234,23 @@ const nuxtModule: Module<ModuleOptions> = function (moduleOptions) {
     }
 
     // JS to inject CSS
-    // @ts-ignore
-    this.options.head.script = this.options.head.script || []
-    // @ts-ignore
-    this.options.head.script.push({
-      hid: 'gf-script',
-      innerHTML: `(function(){var l=document.createElement('link');l.rel="stylesheet";l.href="${url}";document.querySelector("head").appendChild(l);})();`
+    nuxt.options.app.head.script.unshift({
+      'data-hid': 'gf-script',
+      children: `(function(){
+        var h=document.querySelector("head");
+        var m=h.querySelector('meta[name="head:count"]');
+        if(m){m.setAttribute('content',Number(m.getAttribute('content'))+1);}
+        else{m=document.createElement('meta');m.setAttribute('name','head:count');m.setAttribute('content','1');h.append(m);}
+        var l=document.createElement('link');l.rel='stylesheet';l.href='${url}';h.appendChild(l);
+      })();`
     })
 
+    /*
     // no-JS fallback
-    // @ts-ignore
-    this.options.head.noscript = this.options.head.noscript || []
-    // @ts-ignore
-    this.options.head.noscript.push({
-      hid: 'gf-noscript',
-      innerHTML: `<link rel="stylesheet" href="${url}">`
+    // waiting https://github.com/vueuse/head/pull/71
+    /* nuxt.options.app.head.noscript.push({
+      children: `<link rel="stylesheet" href="${url}">`
     })
-
-    // Disable sanitazions
-    // @ts-ignore
-    this.options.head.__dangerouslyDisableSanitizersByTagID = this.options.head.__dangerouslyDisableSanitizersByTagID || {}
-    // @ts-ignore
-    this.options.head.__dangerouslyDisableSanitizersByTagID['gf-script'] = ['innerHTML']
-    // @ts-ignore
-    this.options.head.__dangerouslyDisableSanitizersByTagID['gf-noscript'] = ['innerHTML']
-  })
-}
-
-;(nuxtModule as any).meta = { name, version }
-
-declare module '@nuxt/types' {
-  interface NuxtConfig { [CONFIG_KEY]?: ModuleOptions } // Nuxt 2.14+
-  interface Configuration { [CONFIG_KEY]?: ModuleOptions } // Nuxt 2.9 - 2.13
-}
-
-export default nuxtModule
+    */
+  }
+})

@@ -1,24 +1,27 @@
-import { setupTest } from '@nuxt/test-utils'
+import { describe, test, expect, vi } from 'vitest'
+import { setup } from '@nuxt/test-utils'
+import consola from 'consola'
 
-const mockReporter = {
-  warn: jest.fn()
+export function mockLogger (): typeof consola {
+  const mock = {}
+
+  consola.mockTypes((type) => {
+    mock[type] = mock[type] || vi.fn()
+    return mock[type]
+  })
+
+  // @ts-ignore
+  return mock
 }
 
-jest.mock('consola', () => ({
-  info: jest.fn(),
-  success: jest.fn(),
-  debug: jest.fn(),
-  warn: jest.fn(),
-  withTag: jest.fn().mockImplementation(() => mockReporter)
-}))
+const logger = mockLogger()
 
-describe('warn', () => {
-  setupTest({
-    build: true,
-    fixture: 'fixture/warn'
+describe('warn', async () => {
+  await setup({
+    server: false
   })
 
   test('should warn if no provided fonts', () => {
-    expect(mockReporter.warn).toHaveBeenCalledWith('No provided fonts.')
+    expect(logger.warn).toHaveBeenCalledWith('No provided fonts.')
   })
 })

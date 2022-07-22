@@ -8,7 +8,7 @@
 [![Codecov][codecov-src]][codecov-href]
 [![License][license-src]][license-href]
 
-> [Google Fonts](https://developers.google.com/fonts) module for [NuxtJS](https://nuxtjs.org)
+> [Google Fonts](https://developers.google.com/fonts) module for [Nuxt](https://nuxtjs.org)
 
 - [✨ &nbsp;Release Notes](https://google-fonts.nuxtjs.org/releases)
 - [📖 &nbsp;Documentation](https://google-fonts.nuxtjs.org)
@@ -27,35 +27,17 @@
 
 [📖 &nbsp;Read more](https://google-fonts.nuxtjs.org)
 
-## Setup
+## Contributing
 
-1. Add `@nuxtjs/google-fonts` dependency to your project
+You can contribute to this module online with CodeSandBox:
 
-```bash
-yarn add --dev @nuxtjs/google-fonts # or npm install --save-dev @nuxtjs/google-fonts
-```
+[![Edit @nuxtjs/google-fonts](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/nuxt-community/google-fonts-module/?fontsize=14&hidenavigation=1&theme=dark)
 
-2. Add `@nuxtjs/google-fonts` to the `buildModules` section of `nuxt.config.js`
-
-```js
-{
-  buildModules: [
-    // Simple usage
-    '@nuxtjs/google-fonts',
-
-    // With options
-    ['@nuxtjs/google-fonts', { /* module options */ }]
-  ]
-}
-```
-
-:warning: If you are using Nuxt **< v2.9** you have to install the module as a `dependency` (No `--dev` or `--save-dev` flags) and use `modules` section in `nuxt.config.js` instead of `buildModules`.
-
-## Development
+Or locally:
 
 1. Clone this repository
-2. Install dependencies using `yarn install` or `npm install`
-3. Start development server using `yarn dev` or `npm run dev`
+2. Install dependencies using `yarn install`
+3. Start development server using `yarn dev`
 
 ## License
 
