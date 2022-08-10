@@ -107,7 +107,7 @@ googleFonts: {
 
 ## preload
 
-This option injects [preload](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content) into the head of your project.
+This option injects [preload](https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/preload) into the head of your project.
 
 ```html
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto" />
