@@ -11,6 +11,12 @@ Check the [Nuxt documentation](https://nuxtjs.org/docs/2.x/configuration-glossar
 
 Add `@nuxtjs/google-fonts` dependency to your project:
 
+<alert type="warning">
+  
+If you are using Nuxt v2, install "@nuxtjs/google-fonts": "^2.0.0" instead of v3 of the module. 
+  
+</alert>
+
 <code-group>
   <code-block label="Yarn" active>
 
