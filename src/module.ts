@@ -143,7 +143,7 @@ export default defineNuxtModule<ModuleOptions>({
         )
       }
 
-      // https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content
+      // https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/preload
       // optionally increase loading priority
       if (options.preload) {
         nuxt.options.head.link.push({
