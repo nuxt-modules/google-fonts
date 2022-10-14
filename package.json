@@ -27,7 +27,7 @@
     "lint": "eslint --ext .js,.ts,.vue",
     "prepack": "yarn build",
     "release": "yarn test && standard-version && git push --follow-tags && npm publish",
-    "test": "yarn lint && vitest run --coverage"
+    "test": "yarn lint && vitest --coverage"
   },
   "dependencies": {
     "@nuxt/kit": "^3.0.0-rc.11",
