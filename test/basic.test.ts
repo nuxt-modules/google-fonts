@@ -37,12 +37,12 @@ describe('basic', async () => {
 
   test('does not have preload link by default', async () => {
     const body = await $fetch('/')
-    expect(body).not.toContain('<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
+    expect(body).not.toContain('<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato&display=swap">')
   })
 
   test('does not have static stylesheet link', async () => {
     const body = await $fetch('/')
-    expect(body).not.toContain('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
+    expect(body).not.toContain('<link data-hid="gf-style" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato&display=swap">')
   })
 
   test('has display: swap in font script', async () => {
@@ -55,9 +55,8 @@ describe('basic', async () => {
     expect(body).toContain('data-hid="gf-script"')
   })
 
-  // waiting https://github.com/vueuse/head/pull/71
-  test.skip('has noscript fallback', async () => {
+  test('has noscript fallback', async () => {
     const body = await $fetch('/')
-    expect(body).toContain('<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato"></noscript>')
+    expect(body).toContain('<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato&display=swap"></noscript>')
   })
 })

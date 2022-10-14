@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url'
 import { describe, test, expect, afterAll } from 'vitest'
 import { setup, useTestContext } from '@nuxt/test-utils'
-import del from 'del'
+import { deleteAsync } from 'del'
 
 describe('download', async () => {
   await setup({
@@ -21,6 +21,6 @@ describe('download', async () => {
   })
 
   afterAll(async () => {
-    await del(fileURLToPath(new URL('./fixture/download/node_modules', import.meta.url)))
+    await deleteAsync(fileURLToPath(new URL('./fixture/download/node_modules', import.meta.url)))
   })
 })

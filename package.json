@@ -27,21 +27,21 @@
     "lint": "eslint --ext .js,.ts,.vue",
     "prepack": "yarn build",
     "release": "yarn test && standard-version && git push --follow-tags && npm publish",
-    "test": "yarn lint && nuxi test --coverage"
+    "test": "yarn lint && vitest run --coverage"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.0.0-rc.6",
+    "@nuxt/kit": "^3.0.0-rc.11",
     "google-fonts-helper": "^3.1.0",
-    "pathe": "^0.3.2"
+    "pathe": "^0.3.9"
   },
   "devDependencies": {
     "@nuxt/module-builder": "latest",
-    "@nuxt/test-utils": "^3.0.0-rc.6",
+    "@nuxt/test-utils": "^3.0.0-rc.11",
     "@nuxtjs/eslint-config-typescript": "latest",
-    "c8": "latest",
+    "@vitest/coverage-c8": "latest",
     "del": "latest",
     "eslint": "latest",
-    "nuxt": "^3.0.0-rc.6",
+    "nuxt": "^3.0.0-rc.11",
     "standard-version": "latest",
     "vitest": "latest"
   },
