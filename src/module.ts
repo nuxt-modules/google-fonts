@@ -45,7 +45,7 @@ export default defineNuxtModule<ModuleOptions>({
       options.display = 'swap'
     }
 
-    const fontsParsed = []
+    const fontsParsed: GoogleFonts[] = []
 
     // merge fonts from valid head link
     if (isNuxt2()) {
@@ -143,7 +143,7 @@ export default defineNuxtModule<ModuleOptions>({
         )
       }
 
-      // https://developer.mozilla.org/pt-BR/docs/Web/HTML/Preloading_content
+      // https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/preload
       // optionally increase loading priority
       if (options.preload) {
         nuxt.options.head.link.push({
@@ -186,6 +186,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.options.app.head.link = nuxt.options.app.head.link || []
     nuxt.options.app.head.script = nuxt.options.app.head.script || []
+    nuxt.options.app.head.noscript = nuxt.options.app.head.noscript || []
 
     // https://developer.mozilla.org/en-US/docs/Web/Performance/dns-prefetch
     if (options.prefetch) {
@@ -226,6 +227,7 @@ export default defineNuxtModule<ModuleOptions>({
     // append CSS
     if (options.useStylesheet) {
       nuxt.options.app.head.link.push({
+        'data-hid': 'gf-style',
         rel: 'stylesheet',
         href: url
       })
@@ -245,12 +247,9 @@ export default defineNuxtModule<ModuleOptions>({
       })();`
     })
 
-    /*
     // no-JS fallback
-    // waiting https://github.com/vueuse/head/pull/71
-    /* nuxt.options.app.head.noscript.push({
+    nuxt.options.app.head.noscript.push({
       children: `<link rel="stylesheet" href="${url}">`
     })
-    */
   }
 })

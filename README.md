@@ -15,6 +15,7 @@
 
 ## Features
 
+- Nuxt 3 and Nuxt Bridge support
 - Specify fonts by name/variant
 - Parse head links to Google Fonts
 - Creates only an external link to Google Fonts
@@ -36,8 +37,10 @@ You can contribute to this module online with CodeSandBox:
 Or locally:
 
 1. Clone this repository
-2. Install dependencies using `yarn install`
-3. Start development server using `yarn dev`
+2. Install dependencies using `pnpm install`
+3. Prepare development server using `pnpm dev:prepare`
+4. Build module using `pnpm build`
+5. Launch playground using `pnpm dev`
 
 ## License
 

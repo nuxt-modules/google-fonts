@@ -3,7 +3,6 @@ import { setup, $fetch } from '@nuxt/test-utils'
 
 describe('use stylesheet', async () => {
   await setup({
-    server: true,
     nuxtConfig: {
       app: {
         head: {
@@ -35,12 +34,12 @@ describe('use stylesheet', async () => {
 
   test('has preload link (enabled in config)', async () => {
     const body = await $fetch('/')
-    expect(body).toContain('<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
+    expect(body).toContain('<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato">')
   })
 
   test('has stylesheet link', async () => {
     const body = await $fetch('/')
-    expect(body).toContain('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato">')
+    expect(body).toContain('<link data-hid="gf-style" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato">')
   })
 
   test('has stylesheet that does not contain display swap', async () => {
@@ -55,6 +54,6 @@ describe('use stylesheet', async () => {
 
   test('not has noscript fallback', async () => {
     const body = await $fetch('/')
-    expect(body).not.toContain('<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&amp;family=Lato"></noscript>')
+    expect(body).not.toContain('<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato"></noscript>')
   })
 })
