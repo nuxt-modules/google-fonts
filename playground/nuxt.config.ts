@@ -1,4 +1,3 @@
-import { defineNuxtConfig } from 'nuxt'
 import GoogleFontsModule from '..'
 
 export default defineNuxtConfig({
