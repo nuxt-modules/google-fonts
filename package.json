@@ -30,23 +30,23 @@
     "test": "pnpm lint && vitest run --coverage"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.0.0-rc.11",
+    "@nuxt/kit": "^3.0.0-rc.12",
     "google-fonts-helper": "^3.2.1",
     "pathe": "^0.3.9"
   },
   "devDependencies": {
     "@nuxt/module-builder": "latest",
-    "@nuxt/test-utils": "^3.0.0-rc.11",
+    "@nuxt/test-utils": "^3.0.0-rc.12",
     "@nuxtjs/eslint-config-typescript": "latest",
     "@vitest/coverage-c8": "latest",
     "changelogen": "latest",
     "del": "latest",
     "eslint": "latest",
-    "nuxt": "^3.0.0-rc.11",
+    "nuxt": "^3.0.0-rc.12",
     "vitest": "latest"
   },
   "publishConfig": {
     "access": "public"
   },
-  "packageManager": "pnpm@7.13.5"
+  "packageManager": "pnpm@7.14.0"
 }
