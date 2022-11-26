@@ -29,7 +29,7 @@ Add `@nuxtjs/google-fonts` dependency to your project:
 </code-group>
 
 >**Warning**
-When using Nuxt 3 and/or Nuxt Bridge ensure you're using the prelease version `@nuxtjs/google-fonts@prerelease`.
+When using Nuxt 3 and/or Nuxt Bridge ensure you're using the prerelease version `@nuxtjs/google-fonts@prerelease`.
 
 Then, add `@nuxtjs/google-fonts` to the `buildModules` section of `nuxt.config.js`:
 
