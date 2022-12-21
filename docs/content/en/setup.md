@@ -16,6 +16,9 @@ Add `@nuxtjs/google-fonts` dependency to your project:
 
   ```bash
   yarn add --dev @nuxtjs/google-fonts
+
+  # For Nuxt3
+  yarn add --dev @nuxtjs/google-fonts@prerelease
   ```
 
   </code-block>
@@ -23,6 +26,9 @@ Add `@nuxtjs/google-fonts` dependency to your project:
 
   ```bash
   npm install --save-dev @nuxtjs/google-fonts
+
+  # For Nuxt3
+  npm install --save-dev @nuxtjs/google-fonts@prerelease
   ```
 
   </code-block>
