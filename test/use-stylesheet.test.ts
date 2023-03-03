@@ -39,7 +39,7 @@ describe('use stylesheet', async () => {
 
   test('has stylesheet link', async () => {
     const body = await $fetch('/')
-    expect(body).toContain('<link data-hid="gf-style" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato">')
+    expect(body).toContain('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato">')
   })
 
   test('has stylesheet that does not contain display swap', async () => {
@@ -49,7 +49,7 @@ describe('use stylesheet', async () => {
 
   test('no has script', async () => {
     const body = await $fetch('/')
-    expect(body).not.toContain('data-hid="gf-script"')
+    expect(body).not.toContain('l.href=\'https://fonts.googleapis.com/css2?family=Roboto&family=Lato\'')
   })
 
   test('not has noscript fallback', async () => {

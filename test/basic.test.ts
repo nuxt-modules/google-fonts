@@ -52,7 +52,7 @@ describe('basic', async () => {
 
   test('has script to import font css', async () => {
     const body = await $fetch('/')
-    expect(body).toContain('data-hid="gf-script"')
+    expect(body).toContain('l.href=\'https://fonts.googleapis.com/css2?family=Roboto&family=Lato&display=swap\'')
   })
 
   test('has noscript fallback', async () => {
