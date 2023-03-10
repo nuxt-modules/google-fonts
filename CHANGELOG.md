@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.0.0
+
+
+### 🏡 Chore
+
+  - Update module (16e03a8)
+  - Bump pnpm (623a5b0)
+
+### ❤️  Contributors
+
+- Ricardo Gobbo De Souza ([@ricardogobbosouza](http://github.com/ricardogobbosouza))
+
 ## [3.0.0-1](https://github.com/nuxt-community/google-fonts/compare/v3.0.0-0...v3.0.0-1) (2022-10-25)
 
 
