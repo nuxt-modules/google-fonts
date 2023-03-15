@@ -2,7 +2,7 @@
   "name": "@nuxtjs/google-fonts",
   "version": "3.0.0",
   "description": "Google Fonts module for Nuxt",
-  "repository": "nuxt-community/google-fonts",
+  "repository": "nuxt-modules/google-fonts",
   "license": "MIT",
   "contributors": [
     "Ricardo Gobbo de Souza <ricardogobbosouza@yahoo.com.br>"

@@ -32,7 +32,7 @@
 
 You can contribute to this module online with CodeSandBox:
 
-[![Edit @nuxtjs/google-fonts](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/nuxt-community/google-fonts-module/?fontsize=14&hidenavigation=1&theme=dark)
+[![Edit @nuxtjs/google-fonts](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/nuxt-modules/google-fonts/?fontsize=14&hidenavigation=1&theme=dark)
 
 Or locally:
 
@@ -46,7 +46,7 @@ Or locally:
 
 [MIT License](./LICENSE)
 
-Copyright (c) Nuxt Community
+Copyright (c) Nuxt Modules
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/@nuxtjs/google-fonts/latest.svg
@@ -55,11 +55,11 @@ Copyright (c) Nuxt Community
 [npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/google-fonts.svg
 [npm-downloads-href]: https://npmjs.com/package/@nuxtjs/google-fonts
 
-[github-actions-ci-src]: https://github.com/nuxt-community/google-fonts-module/workflows/ci/badge.svg
-[github-actions-ci-href]: https://github.com/nuxt-community/google-fonts-module/actions?query=workflow%3Aci
+[github-actions-ci-src]: https://github.com/nuxt-modules/google-fonts/workflows/ci/badge.svg
+[github-actions-ci-href]: https://github.com/nuxt-modules/google-fonts/actions?query=workflow%3Aci
 
-[codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/google-fonts-module.svg
-[codecov-href]: https://codecov.io/gh/nuxt-community/google-fonts-module
+[codecov-src]: https://img.shields.io/codecov/c/github/nuxt-modules/google-fonts.svg
+[codecov-href]: https://codecov.io/gh/nuxt-modules/google-fonts
 
 [license-src]: https://img.shields.io/npm/l/@nuxtjs/google-fonts.svg
 [license-href]: https://npmjs.com/package/@nuxtjs/google-fonts
