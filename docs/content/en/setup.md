@@ -47,14 +47,15 @@ If you are using Nuxt < v2.9 you have to install the module as a dependency (No 
 </alert>
 
 ### For Nuxt 3
+
 Then, add `@nuxtjs/google-fonts` to the `modules` section of `nuxt.config.ts`:
 
 ```js[nuxt.config.ts]
-{
+export default defineNuxtConfig({
   modules: [
     '@nuxtjs/google-fonts'
   ],
-}
+})
 ```
 
 <alert type="warning">
