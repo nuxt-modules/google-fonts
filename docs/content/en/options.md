@@ -135,6 +135,6 @@ Default: false
 
 ```js{}[nuxt.config.js]
 googleFonts: {
-  useStylesheet: false
+  useStylesheet: true
 }
 ```
