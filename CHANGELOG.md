@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.0.1
+
+[compare changes](https://undefined/undefined/compare/v3.0.0...v3.0.1)
+
+
+### 📖 Documentation
+
+  - Update setup content (#124)
+
+### 🏡 Chore
+
+  - Move to nuxt-modules (#126)
+  - Update deps (ed879ed)
+
+### ✅ Tests
+
+  - Dont use data-key (019772b)
+  - Update (31c535c)
+
+### ❤️  Contributors
+
+- Ricardo Gobbo De Souza ([@ricardogobbosouza](http://github.com/ricardogobbosouza))
+- Dami Sparks ([@damisparks](http://github.com/damisparks))
+
 ## v3.0.0
 
 
