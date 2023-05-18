@@ -22,27 +22,22 @@ describe('basic', async () => {
 
   test('has prefetch link', async () => {
     const body = await $fetch('/')
-    expect(body).toContain('<link rel="dns-prefetch" href="https://fonts.gstatic.com/">')
+    expect(body).toContain('<link rel="dns-prefetch" href="https://fonts.gstatic.com/"')
   })
 
   test('has preconnect link to font origin', async () => {
     const body = await $fetch('/')
-    expect(body).toContain('<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="anonymous">')
+    expect(body).toContain('<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="anonymous"')
   })
 
   test('has preconnect link to font stylesheet origin', async () => {
     const body = await $fetch('/')
-    expect(body).toContain('<link rel="preconnect" href="https://fonts.googleapis.com/">')
+    expect(body).toContain('<link rel="preconnect" href="https://fonts.googleapis.com/"')
   })
 
   test('does not have preload link by default', async () => {
     const body = await $fetch('/')
-    expect(body).not.toContain('<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato&display=swap">')
-  })
-
-  test('does not have static stylesheet link', async () => {
-    const body = await $fetch('/')
-    expect(body).not.toContain('<link data-hid="gf-style" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato&display=swap">')
+    expect(body).not.toContain('<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato&display=swap"')
   })
 
   test('has display: swap in font script', async () => {

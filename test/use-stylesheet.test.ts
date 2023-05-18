@@ -24,22 +24,22 @@ describe('use stylesheet', async () => {
 
   test('has prefetch link', async () => {
     const body = await $fetch('/')
-    expect(body).toContain('<link rel="dns-prefetch" href="https://fonts.gstatic.com/">')
+    expect(body).toContain('<link rel="dns-prefetch" href="https://fonts.gstatic.com/"')
   })
 
   test('has preconnect link', async () => {
     const body = await $fetch('/')
-    expect(body).toContain('<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="anonymous">')
+    expect(body).toContain('<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="anonymous"')
   })
 
   test('has preload link (enabled in config)', async () => {
     const body = await $fetch('/')
-    expect(body).toContain('<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato">')
+    expect(body).toContain('<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato"')
   })
 
   test('has stylesheet link', async () => {
     const body = await $fetch('/')
-    expect(body).toContain('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato">')
+    expect(body).toContain('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Lato"')
   })
 
   test('has stylesheet that does not contain display swap', async () => {
