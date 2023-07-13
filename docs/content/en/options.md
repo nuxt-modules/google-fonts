@@ -31,7 +31,7 @@ It is also possible to add fonts directly in the module declaration:
 ```js{}[nuxt.config.js]
 export default defineNuxtConfig({
   modules: [
-    ['@nuxtjs/google-fonts',{
+    ['@nuxtjs/google-fonts', {
         families: {
           Roboto: true,
           Inter: [400, 700],
