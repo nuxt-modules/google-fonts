@@ -26,6 +26,27 @@ googleFonts: {
 }
 ```
 
+It is also possible to add fonts directly in the module declaration:
+
+```js{}[nuxt.config.js]
+export default defineNuxtConfig({
+  modules: [
+    ['@nuxtjs/google-fonts',{
+        families: {
+          Roboto: true,
+          Inter: [400, 700],
+           'Josefin+Sans': true,
+          Lato: [100, 300],
+          Raleway: {
+            wght: [100, 400],
+            ital: [100]
+          },
+        }
+    }],
+  ],
+})
+```
+
 ## display
 
 The [font-display property](https://developers.google.com/fonts/docs/css2#use_font-display) lets you control what happens while the font is still loading or otherwise unavailable.
