@@ -52,6 +52,13 @@ export default defineNuxtModule<ModuleOptions>({
     // @ts-ignore
     const head = (nuxt.options.app.head || nuxt.options.head) as NuxtAppHead
 
+    // disable module when head is a function
+    if (typeof head === 'function') {
+      logger.warn('This module does not work with `head` as function.')
+
+      return
+    }
+
     // merge fonts from valid head link
     fontsParsed.push(...head.link
       .filter(link => isValidURL(String(link.href)))
