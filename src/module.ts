@@ -91,7 +91,25 @@ export default defineNuxtModule<ModuleOptions>({
           fontsPath: options.fontsPath
         })
 
+        const outputFonts: string[] = []
+
+        downloader.hook('download-css:done', (url) => {
+          logger.success(url)
+        })
+
+        downloader.hook('download-font:done', (font) => {
+          const fontName = font.outputFont.replace(`-${font.outputFont.replace(/.*-/, '')}`, '')
+
+          if (!outputFonts.includes(fontName)) {
+            outputFonts.push(fontName)
+            logger.info(fontName)
+          }
+        })
+
+        logger.start('Downloading fonts...')
         await downloader.execute()
+        logger.success('Download fonts completed.')
+        logger.log('')
 
         if (options.inject) {
           nuxt.options.css.push(resolve(outputDir, options.stylePath))
