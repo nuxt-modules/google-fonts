@@ -162,7 +162,8 @@ export default defineNuxtModule<ModuleOptions>({
       // no-JS fallback
       head.noscript.push({
         key: 'gf-noscript',
-        innerHTML: `<link rel="stylesheet" href="${url}">`
+        innerHTML: `<link rel="stylesheet" href="${url}">`,
+        tagPosition: 'bodyOpen'
       })
 
       // Disable sanitazions
@@ -190,7 +191,8 @@ export default defineNuxtModule<ModuleOptions>({
 
     // no-JS fallback
     head.noscript.push({
-      children: `<link rel="stylesheet" href="${url}">`
+      children: `<link rel="stylesheet" href="${url}">`,
+      tagPosition: 'bodyOpen'
     })
   }
 })
