@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.0.2
+
+[compare changes](https://undefined/undefined/compare/v3.0.1...v3.0.2)
+
+### 🩹 Fixes
+
+- Insert noscript tag in body open (#142)
+
+### 🏡 Chore
+
+- Update deps (#141)
+- Disable module when head as function (#143)
+
+### ❤️  Contributors
+
+- Ricardo Gobbo De Souza ([@ricardogobbosouza](http://github.com/ricardogobbosouza))
+
 ## v3.0.1
 
 [compare changes](https://undefined/undefined/compare/v3.0.0...v3.0.1)
