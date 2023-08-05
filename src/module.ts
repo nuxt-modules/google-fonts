@@ -67,7 +67,7 @@ export default defineNuxtModule<ModuleOptions>({
 
 
     // construct google fonts url
-    const resultArray = Object.entries(merge(options, ...fontsParsed).families!).map(([font, value]) => {
+    const fontOptionsList = Object.entries(merge(options, ...fontsParsed).families!).map(([font, value]) => {
       let currentOptions = options
       if (value.text) {
         currentOptions = {
@@ -85,7 +85,7 @@ export default defineNuxtModule<ModuleOptions>({
     });
 
 
-    const urls = resultArray.map((result) => constructURL(result)).filter((url) => url !== false) as string[];
+    const urls = fontOptionsList.map((result) => constructURL(result)).filter((url) => url !== false) as string[];
 
     if (!urls.length) {
       logger.warn('No provided fonts.')
