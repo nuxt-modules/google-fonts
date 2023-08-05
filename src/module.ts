@@ -1,10 +1,11 @@
 import { resolve } from 'pathe'
 import type { MetaObject } from '@nuxt/schema'
 import { defineNuxtModule, isNuxt2, resolvePath, useLogger } from '@nuxt/kit'
-import { constructURL, download, isValidURL, parse, merge, DownloadOptions, GoogleFonts } from 'google-fonts-helper'
+import { constructURL, download, isValidURL, parse, merge, DownloadOptions, GoogleFonts, FamilyWeight, FamilyStyles } from 'google-fonts-helper'
 import { name, version } from '../package.json'
 
 type NuxtAppHead = Required<MetaObject>
+type FamilyStylesExtended = FamilyStyles & { text?: string }
 
 export interface ModuleOptions extends DownloadOptions, GoogleFonts {
   prefetch?: boolean
@@ -67,15 +68,15 @@ export default defineNuxtModule<ModuleOptions>({
 
 
     // construct google fonts url
-    const fontOptionsList = Object.entries(merge(options, ...fontsParsed).families!).map(([font, value]) => {
+    const fontOptionsList = Object.entries(merge(options, ...fontsParsed).families!).map(([font, value]: [string, FamilyStylesExtended|FamilyWeight] ) => {
       let currentOptions = options
-      if (value.text) {
+      if (typeof value === 'object' && !Array.isArray(value) && value.text) {
+        value 
         currentOptions = {
           ...currentOptions,
           text: value.text
         }
         delete value.text
-        delete value.families
       }
 
       return {
