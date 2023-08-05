@@ -41,7 +41,7 @@ export default defineNuxtModule<ModuleOptions>({
     fontsDir: 'fonts',
     fontsPath: '../fonts'
   },
-  async setup (options, nuxt) {
+  async setup(options, nuxt) {
     // If user hasn't set the display value manually and isn't using
     // a preload, set the default display value to 'swap'
     if (options.display === undefined && !options.preload) {
@@ -69,7 +69,7 @@ export default defineNuxtModule<ModuleOptions>({
     // construct google fonts url
     const resultArray = Object.entries(merge(options, ...fontsParsed).families!).map(([font, value]) => {
       let currentOptions = options
-      if(value.text) {
+      if (value.text) {
         currentOptions = {
           ...currentOptions,
           text: value.text
@@ -77,16 +77,16 @@ export default defineNuxtModule<ModuleOptions>({
         delete value.text
         delete value.families
       }
-      
+
       return {
-      ...currentOptions,
-      families: { [font]: value },
-    }
-  });
+        ...currentOptions,
+        families: { [font]: value },
+      }
+    });
 
 
     const urls = resultArray.map((result) => constructURL(result)).filter((url) => url !== false) as string[];
-    
+
     if (!urls.length) {
       logger.warn('No provided fonts.')
       return
@@ -101,35 +101,35 @@ export default defineNuxtModule<ModuleOptions>({
       const outputFonts: string[] = []
 
       try {
-      for (const url of urls) {
-        const downloader = download(url, {
-          base64: options.base64,
-          overwriting: options.overwriting,
-          outputDir,
-          stylePath: options.stylePath,
-          fontsDir: options.fontsDir,
-          fontsPath: options.fontsPath
-        })
+        for (const url of urls) {
+          const downloader = download(url, {
+            base64: options.base64,
+            overwriting: options.overwriting,
+            outputDir,
+            stylePath: options.stylePath,
+            fontsDir: options.fontsDir,
+            fontsPath: options.fontsPath
+          })
 
 
-        downloader.hook('download-css:done', (url) => {
-          logger.success(url)
-        })
+          downloader.hook('download-css:done', (url) => {
+            logger.success(url)
+          })
 
-        downloader.hook('download-font:done', (font) => {
-          const fontName = font.outputFont.replace(`-${font.outputFont.replace(/.*-/, '')}`, '')
+          downloader.hook('download-font:done', (font) => {
+            const fontName = font.outputFont.replace(`-${font.outputFont.replace(/.*-/, '')}`, '')
 
-          if (!outputFonts.includes(fontName)) {
-            outputFonts.push(fontName)
-            logger.info(fontName)
-          }
-        })
+            if (!outputFonts.includes(fontName)) {
+              outputFonts.push(fontName)
+              logger.info(fontName)
+            }
+          })
 
-        logger.start('Downloading fonts...')
-        await downloader.execute()
-        logger.success('Download fonts completed.')
-        logger.log('')
-    }
+          logger.start('Downloading fonts...')
+          await downloader.execute()
+          logger.success('Download fonts completed.')
+          logger.log('')
+        }
 
 
         if (options.inject) {
@@ -142,7 +142,7 @@ export default defineNuxtModule<ModuleOptions>({
         nuxt.options.nitro.publicAssets.push({ dir: outputDir })
       } catch (e) {
         logger.error(e)
-      } 
+      }
 
       return
     }
@@ -181,24 +181,24 @@ export default defineNuxtModule<ModuleOptions>({
     if (options.preload) {
       for (const url of urls) {
 
-      head.link.push({
-        key: 'gf-preload',
-        rel: 'preload',
-        as: 'style',
-        href: url
-      })
-    }
+        head.link.push({
+          key: 'gf-preload',
+          rel: 'preload',
+          as: 'style',
+          href: url
+        })
+      }
     }
 
     // append CSS
     if (options.useStylesheet) {
       for (const url of urls) {
-      head.link.push({
-        key: 'gf-style',
-        rel: 'stylesheet',
-        href: url
-      })
-    }
+        head.link.push({
+          key: 'gf-style',
+          rel: 'stylesheet',
+          href: url
+        })
+      }
       return
     }
 
@@ -229,7 +229,7 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     // JS to inject CSS
-    for(const url of urls) {
+    for (const url of urls) {
       head.script.unshift({
         key: 'gf-script',
         children: `(function(){
