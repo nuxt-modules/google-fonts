@@ -6,8 +6,12 @@ export default defineNuxtConfig({
   ],
   googleFonts: {
     families: {
-      Roboto: true,
+      Roboto: {
+        wght: [100, 400],
+        text: 'Roboto'
+      },
       Mulish: true
-    }
+    },
+    text: 'Hello World'
   }
 })

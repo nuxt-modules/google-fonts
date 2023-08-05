@@ -65,12 +65,30 @@ export default defineNuxtModule<ModuleOptions>({
       .map(link => parse(String(link.href)))
     )
 
+
     // construct google fonts url
-    const url = constructURL(merge(options, ...fontsParsed))
+    const resultArray = Object.entries(merge(options, ...fontsParsed).families!).map(([font, value]) => {
+      let currentOptions = options
+      if(value.text) {
+        currentOptions = {
+          ...currentOptions,
+          text: value.text
+        }
+        delete value.text
+        delete value.families
+      }
+      
+      return {
+      ...currentOptions,
+      families: { [font]: value },
+    }
+  });
 
-    if (!url) {
+
+    const urls = resultArray.map((result) => constructURL(result)).filter((url) => url !== false) as string[];
+    
+    if (!urls.length) {
       logger.warn('No provided fonts.')
-
       return
     }
 
@@ -80,8 +98,10 @@ export default defineNuxtModule<ModuleOptions>({
     // download
     if (options.download) {
       const outputDir = await resolvePath(options.outputDir)
+      const outputFonts: string[] = []
 
       try {
+      for (const url of urls) {
         const downloader = download(url, {
           base64: options.base64,
           overwriting: options.overwriting,
@@ -91,7 +111,6 @@ export default defineNuxtModule<ModuleOptions>({
           fontsPath: options.fontsPath
         })
 
-        const outputFonts: string[] = []
 
         downloader.hook('download-css:done', (url) => {
           logger.success(url)
@@ -110,6 +129,8 @@ export default defineNuxtModule<ModuleOptions>({
         await downloader.execute()
         logger.success('Download fonts completed.')
         logger.log('')
+    }
+
 
         if (options.inject) {
           nuxt.options.css.push(resolve(outputDir, options.stylePath))
@@ -121,7 +142,7 @@ export default defineNuxtModule<ModuleOptions>({
         nuxt.options.nitro.publicAssets.push({ dir: outputDir })
       } catch (e) {
         logger.error(e)
-      }
+      } 
 
       return
     }
@@ -158,6 +179,8 @@ export default defineNuxtModule<ModuleOptions>({
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/preload
     // optionally increase loading priority
     if (options.preload) {
+      for (const url of urls) {
+
       head.link.push({
         key: 'gf-preload',
         rel: 'preload',
@@ -165,59 +188,64 @@ export default defineNuxtModule<ModuleOptions>({
         href: url
       })
     }
+    }
 
     // append CSS
     if (options.useStylesheet) {
+      for (const url of urls) {
       head.link.push({
         key: 'gf-style',
         rel: 'stylesheet',
         href: url
       })
-
+    }
       return
     }
 
     if (isNuxt2()) {
       // JS to inject CSS
-      head.script.push({
-        key: 'gf-script',
-        innerHTML: `(function(){var l=document.createElement('link');l.rel="stylesheet";l.href="${url}";document.querySelector("head").appendChild(l);})();`
-      })
+      for (const url of urls) {
+        head.script.push({
+          key: 'gf-script',
+          innerHTML: `(function(){var l=document.createElement('link');l.rel="stylesheet";l.href="${url}";document.querySelector("head").appendChild(l);})();`
+        })
 
-      // no-JS fallback
-      head.noscript.push({
-        key: 'gf-noscript',
-        innerHTML: `<link rel="stylesheet" href="${url}">`,
-        tagPosition: 'bodyOpen'
-      })
+        // no-JS fallback
+        head.noscript.push({
+          key: 'gf-noscript',
+          innerHTML: `<link rel="stylesheet" href="${url}">`,
+          tagPosition: 'bodyOpen'
+        })
 
-      // Disable sanitazions
-      // @ts-ignore
-      head.__dangerouslyDisableSanitizersByTagID = head.__dangerouslyDisableSanitizersByTagID || {}
-      // @ts-ignore
-      head.__dangerouslyDisableSanitizersByTagID['gf-script'] = ['innerHTML']
-      // @ts-ignore
-      head.__dangerouslyDisableSanitizersByTagID['gf-noscript'] = ['innerHTML']
-
+        // Disable sanitazions
+        // @ts-ignore
+        head.__dangerouslyDisableSanitizersByTagID = head.__dangerouslyDisableSanitizersByTagID || {}
+        // @ts-ignore
+        head.__dangerouslyDisableSanitizersByTagID['gf-script'] = ['innerHTML']
+        // @ts-ignore
+        head.__dangerouslyDisableSanitizersByTagID['gf-noscript'] = ['innerHTML']
+      }
       return
     }
 
     // JS to inject CSS
-    head.script.unshift({
-      key: 'gf-script',
-      children: `(function(){
-        var h=document.querySelector("head");
-        var m=h.querySelector('meta[name="head:count"]');
-        if(m){m.setAttribute('content',Number(m.getAttribute('content'))+1);}
-        else{m=document.createElement('meta');m.setAttribute('name','head:count');m.setAttribute('content','1');h.append(m);}
-        var l=document.createElement('link');l.rel='stylesheet';l.href='${url}';h.appendChild(l);
-      })();`
-    })
+    for(const url of urls) {
+      head.script.unshift({
+        key: 'gf-script',
+        children: `(function(){
+          var h=document.querySelector("head");
+          var m=h.querySelector('meta[name="head:count"]');
+          if(m){m.setAttribute('content',Number(m.getAttribute('content'))+1);}
+          else{m=document.createElement('meta');m.setAttribute('name','head:count');m.setAttribute('content','1');h.append(m);}
+          var l=document.createElement('link');l.rel='stylesheet';l.href='${url}';h.appendChild(l);
+        })();`
+      })
 
-    // no-JS fallback
-    head.noscript.push({
-      children: `<link rel="stylesheet" href="${url}">`,
-      tagPosition: 'bodyOpen'
-    })
+      // no-JS fallback
+      head.noscript.push({
+        children: `<link rel="stylesheet" href="${url}">`,
+        tagPosition: 'bodyOpen'
+      })
+    }
   }
 })
