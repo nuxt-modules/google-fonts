@@ -1,4 +1,4 @@
-[![@nuxtjs/google-fonts](./docs/static/preview.svg)](https://google-fonts.nuxtjs.org)
+[![@nuxtjs/google-fonts](https://google-fonts.nuxtjs.org/social-card.png)](https://google-fonts.nuxtjs.org)
 
 # @nuxtjs/google-fonts
 
@@ -49,17 +49,14 @@ Or locally:
 Copyright (c) Nuxt Modules
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/@nuxtjs/google-fonts/latest.svg
 [npm-version-href]: https://npmjs.com/package/@nuxtjs/google-fonts
-
 [npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/google-fonts.svg
 [npm-downloads-href]: https://npmjs.com/package/@nuxtjs/google-fonts
-
 [github-actions-ci-src]: https://github.com/nuxt-modules/google-fonts/workflows/ci/badge.svg
 [github-actions-ci-href]: https://github.com/nuxt-modules/google-fonts/actions?query=workflow%3Aci
-
 [codecov-src]: https://img.shields.io/codecov/c/github/nuxt-modules/google-fonts.svg
 [codecov-href]: https://codecov.io/gh/nuxt-modules/google-fonts
-
 [license-src]: https://img.shields.io/npm/l/@nuxtjs/google-fonts.svg
 [license-href]: https://npmjs.com/package/@nuxtjs/google-fonts
