@@ -164,6 +164,7 @@ export default defineNuxtModule<ModuleOptions>({
         key: 'gf-preload',
         rel: 'preload',
         as: 'style',
+        crossOrigin: options.crossOrigin,
         href: url
       })
     }
