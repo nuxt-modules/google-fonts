@@ -11,6 +11,7 @@ export interface ModuleOptions extends DownloadOptions, GoogleFonts {
   preconnect?: boolean
   preload?: boolean
   useStylesheet?: boolean
+  crossOrigin?: String | null,
   download?: boolean
   inject?: boolean
 }
@@ -32,6 +33,7 @@ export default defineNuxtModule<ModuleOptions>({
     preconnect: true,
     preload: false,
     useStylesheet: false,
+    crossOrigin: null,
     download: true,
     base64: false,
     inject: true,
@@ -177,11 +179,13 @@ export default defineNuxtModule<ModuleOptions>({
       return
     }
 
+    const crossOriginAttribute = options.crossOrigin !== null ? `l.crossOrigin=${options.crossOrigin};` : ''
+
     if (isNuxt2()) {
       // JS to inject CSS
       head.script.push({
         key: 'gf-script',
-        innerHTML: `(function(){var l=document.createElement('link');l.rel="stylesheet";l.href="${url}";document.querySelector("head").appendChild(l);})();`
+        innerHTML: `(function(){var l=document.createElement('link');l.rel="stylesheet";l.href="${url}";${crossOriginAttribute}document.querySelector("head").appendChild(l);})();`
       })
 
       // no-JS fallback
@@ -210,7 +214,7 @@ export default defineNuxtModule<ModuleOptions>({
         var m=h.querySelector('meta[name="head:count"]');
         if(m){m.setAttribute('content',Number(m.getAttribute('content'))+1);}
         else{m=document.createElement('meta');m.setAttribute('name','head:count');m.setAttribute('content','1');h.append(m);}
-        var l=document.createElement('link');l.rel='stylesheet';l.href='${url}';h.appendChild(l);
+        var l=document.createElement('link');l.rel='stylesheet';l.href='${url}';${crossOriginAttribute}h.appendChild(l);
       })();`
     })
 
