@@ -1,7 +1,7 @@
 import { resolve } from 'pathe'
 import type { MetaObject } from '@nuxt/schema'
 import { defineNuxtModule, isNuxt2, resolvePath, useLogger } from '@nuxt/kit'
-import { constructURL, download, isValidURL, parse, merge, DownloadOptions, GoogleFonts } from 'google-fonts-helper'
+import { constructURL, download, isValidURL, parse, merge, type DownloadOptions, type GoogleFonts } from 'google-fonts-helper'
 import { name, version } from '../package.json'
 
 type NuxtAppHead = Required<MetaObject>
@@ -93,6 +93,15 @@ export default defineNuxtModule<ModuleOptions>({
 
         const outputFonts: string[] = []
 
+        downloader.hook('download:start', () => {
+          logger.start('Downloading fonts...')
+        })
+
+        downloader.hook('download:complete', () => {
+          logger.success('Download fonts completed.')
+          logger.log('')
+        })
+
         downloader.hook('download-css:done', (url) => {
           logger.success(url)
         })
@@ -106,10 +115,7 @@ export default defineNuxtModule<ModuleOptions>({
           }
         })
 
-        logger.start('Downloading fonts...')
         await downloader.execute()
-        logger.success('Download fonts completed.')
-        logger.log('')
 
         if (options.inject) {
           nuxt.options.css.push(resolve(outputDir, options.stylePath))
