@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.1.0
+
+[compare changes](https://github.com/nuxt-modules/google-fonts/compare/v3.0.2...v3.1.0)
+
+### 🚀 Enhancements
+
+- Add log message when downloading fonts ([#144](https://github.com/nuxt-modules/google-fonts/pull/144))
+
+### 🩹 Fixes
+
+- Overwrite and duplicate fonts ([#161](https://github.com/nuxt-modules/google-fonts/pull/161))
+
+### 📖 Documentation
+
+- Migrate to docus ([#95](https://github.com/nuxt-modules/google-fonts/pull/95))
+- Update image and colors ([#148](https://github.com/nuxt-modules/google-fonts/pull/148))
+- Update colors ([#151](https://github.com/nuxt-modules/google-fonts/pull/151))
+- Update social card ([47a7ecf](https://github.com/nuxt-modules/google-fonts/commit/47a7ecf))
+
+### 🏡 Chore
+
+- Remove workspace ([#145](https://github.com/nuxt-modules/google-fonts/pull/145))
+- Update lock file ([9e01d00](https://github.com/nuxt-modules/google-fonts/commit/9e01d00))
+
+### ✅ Tests
+
+- Unnecessary ([7481c13](https://github.com/nuxt-modules/google-fonts/commit/7481c13))
+
+### ❤️ Contributors
+
+- Ricardo Gobbo De Souza ([@ricardogobbosouza](http://github.com/ricardogobbosouza))
+- Sébastien Chopin ([@Atinux](http://github.com/Atinux))
+
 ## v3.0.2
 
 [compare changes](https://undefined/undefined/compare/v3.0.1...v3.0.2)
