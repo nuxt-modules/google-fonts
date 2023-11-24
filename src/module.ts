@@ -180,7 +180,7 @@ export default defineNuxtModule<ModuleOptions>({
       return
     }
 
-    const crossOriginAttribute = options.crossOrigin !== null ? `l.crossOrigin=${options.crossOrigin};` : ''
+    const crossOriginAttribute = options.crossOrigin !== null ? `l.crossOrigin="${options.crossOrigin}";` : ''
 
     if (isNuxt2()) {
       // JS to inject CSS
