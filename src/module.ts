@@ -125,6 +125,23 @@ export default defineNuxtModule<ModuleOptions>({
         nuxt.options.nitro = nuxt.options.nitro || {}
         nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
         nuxt.options.nitro.publicAssets.push({ dir: outputDir })
+
+        // Setup postcss plugins
+        // https://github.com/nuxt-modules/google-fonts/issues/158
+        if (process.env.NODE_ENV === 'production') {
+          const postcssOptions =
+              nuxt.options.postcss || /* nuxt 3 */ /* @ts-ignore */
+              nuxt.options.build.postcss.postcssOptions || /* older nuxt3 */ /* @ts-ignore */
+              nuxt.options.build.postcss as any
+          postcssOptions.plugins = postcssOptions.plugins || {}
+          postcssOptions.plugins.cssnano = postcssOptions.plugins.cssnano ?? {}
+          postcssOptions.plugins.cssnano.preset = postcssOptions.plugins.cssnano.preset ?? []
+          postcssOptions.plugins.cssnano.preset = [
+            'default', {
+              ...(postcssOptions.plugins.cssnano.preset[1] || {}),
+              discardComments: { removeAll: true }
+            }]
+        }
       } catch (e) {
         logger.error(e)
       }
