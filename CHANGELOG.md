@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.1.3
+
+[compare changes](https://github.com/nuxt-modules/google-fonts/compare/v3.1.2...v3.1.3)
+
+### 🏡 Chore
+
+- Update lock file ([14f2a77](https://github.com/nuxt-modules/google-fonts/commit/14f2a77))
+
+### ❤️ Contributors
+
+- Ricardo Gobbo De Souza ([@ricardogobbosouza](http://github.com/ricardogobbosouza))
+
 ## v3.1.2
 
 [compare changes](https://github.com/nuxt-modules/google-fonts/compare/v3.1.1...v3.1.2)
