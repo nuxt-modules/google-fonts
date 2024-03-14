@@ -78,7 +78,7 @@ export default defineNuxtModule<ModuleOptions>({
     head.link = head.link.filter(link => !isValidURL(String(link.href)))
 
     // download
-    if (options.download) {
+    if (options.download && options.outputDir) {
       const outputDir = await resolvePath(options.outputDir)
 
       try {
@@ -117,7 +117,7 @@ export default defineNuxtModule<ModuleOptions>({
 
         await downloader.execute()
 
-        if (options.inject) {
+        if (options.inject && options.stylePath) {
           nuxt.options.css.push(resolve(outputDir, options.stylePath))
         }
 
