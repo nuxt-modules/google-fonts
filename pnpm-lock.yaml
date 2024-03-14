@@ -9,8 +9,8 @@ dependencies:
     specifier: ^3.10.3
     version: 3.10.3(rollup@3.29.4)
   google-fonts-helper:
-    specifier: ^3.4.1
-    version: 3.4.1
+    specifier: ^3.5.0
+    version: 3.5.0
   pathe:
     specifier: ^1.1.2
     version: 1.1.2
@@ -1414,7 +1414,7 @@ packages:
       pkg-types: 1.0.3
       scule: 1.1.1
       std-env: 3.7.0
-      ufo: 1.3.2
+      ufo: 1.4.0
       unimport: 3.7.0(rollup@3.29.4)
       untyped: 1.4.0
     transitivePeerDependencies:
@@ -4296,7 +4296,7 @@ packages:
       enhanced-resolve: 5.15.0
       mlly: 1.4.2
       pathe: 1.1.2
-      ufo: 1.3.2
+      ufo: 1.4.0
     dev: true
 
   /fast-deep-equal@3.1.3:
@@ -4683,13 +4683,13 @@ packages:
       slash: 5.1.0
       unicorn-magic: 0.1.0
 
-  /google-fonts-helper@3.4.1:
-    resolution: {integrity: sha512-unq9c1NF771916DrVR2MTpMJ5iHiMSjMBApErjhWT1FZIE+7x+Qik+w6cYi5jw/KtHELz+tyGAKgQetTU9wrlA==}
+  /google-fonts-helper@3.5.0:
+    resolution: {integrity: sha512-QcKvB3Y+jJFpvBUp/iG1oe9BbKirrjwU2mzJzKGGb5czz6T93CCP9A8IlfCoZnko7b1+gPH3yVghXP5EBvunDg==}
     dependencies:
       deepmerge: 4.3.1
       hookable: 5.5.3
       ofetch: 1.3.3
-      ufo: 1.3.2
+      ufo: 1.4.0
     dev: false
 
   /gopd@1.0.1:
@@ -5390,7 +5390,7 @@ packages:
       node-forge: 1.3.1
       pathe: 1.1.2
       std-env: 3.7.0
-      ufo: 1.3.2
+      ufo: 1.4.0
       untun: 0.1.2
       uqr: 0.1.2
     dev: true
@@ -8101,7 +8101,7 @@ packages:
       mri: 1.2.0
       node-fetch-native: 1.4.1
       ofetch: 1.3.3
-      ufo: 1.3.2
+      ufo: 1.4.0
     transitivePeerDependencies:
       - supports-color
     dev: true
