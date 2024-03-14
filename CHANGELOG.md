@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.2.0
+
+[compare changes](https://github.com/nuxt-modules/google-fonts/compare/v3.1.3...v3.2.0)
+
+### 🚀 Enhancements
+
+- Update `google-fonts-helper` ([#184](https://github.com/nuxt-modules/google-fonts/pull/184))
+
+### 🩹 Fixes
+
+- Update ModuleOptions interface in module.ts ([#179](https://github.com/nuxt-modules/google-fonts/pull/179))
+
+### 🏡 Chore
+
+- **release:** V3.1.3 ([787efbf](https://github.com/nuxt-modules/google-fonts/commit/787efbf))
+- Update commands ([5743728](https://github.com/nuxt-modules/google-fonts/commit/5743728))
+- Test bundler module resolution ([#176](https://github.com/nuxt-modules/google-fonts/pull/176))
+
+### ❤️ Contributors
+
+- Ricardo Gobbo De Souza ([@ricardogobbosouza](http://github.com/ricardogobbosouza))
+- Mehmet <hi@productdevbook.com>
+- Daniel Roe ([@danielroe](http://github.com/danielroe))
+
 ## v3.1.3
 
 [compare changes](https://github.com/nuxt-modules/google-fonts/compare/v3.1.2...v3.1.3)
