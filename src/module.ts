@@ -6,7 +6,7 @@ import { name, version } from '../package.json'
 
 type NuxtAppHead = Required<MetaObject>
 
-export interface ModuleOptions extends DownloadOptions, GoogleFonts {
+export interface ModuleOptions extends Partial<DownloadOptions>, GoogleFonts {
   prefetch?: boolean
   preconnect?: boolean
   preload?: boolean
