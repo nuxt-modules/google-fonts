@@ -12,4 +12,9 @@ export default createConfigForNuxt({
       './docs',
     ],
   },
+}).append({
+  files: ['docs/**'],
+  rules: {
+    'vue/multi-word-component-names': 'off',
+  },
 })

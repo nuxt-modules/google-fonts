@@ -49,7 +49,7 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     const fontsParsed: GoogleFonts[] = []
-    // @ts-expect-error
+    // @ts-expect-error nuxt 2 types
     const head = (nuxt.options.app.head || nuxt.options.head) as NuxtAppHead
 
     // disable module when head is a function
@@ -199,11 +199,11 @@ export default defineNuxtModule<ModuleOptions>({
       })
 
       // Disable sanitazions
-      // @ts-expect-error
+      // @ts-expect-error nuxt 2 types
       head.__dangerouslyDisableSanitizersByTagID = head.__dangerouslyDisableSanitizersByTagID || {}
-      // @ts-expect-error
+      // @ts-expect-error nuxt 2 types
       head.__dangerouslyDisableSanitizersByTagID['gf-script'] = ['innerHTML']
-      // @ts-expect-error
+      // @ts-expect-error nuxt 2 types
       head.__dangerouslyDisableSanitizersByTagID['gf-noscript'] = ['innerHTML']
 
       return
