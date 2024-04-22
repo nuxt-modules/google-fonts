@@ -25,7 +25,7 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "lint": "eslint --ext .js,.ts,.vue",
+    "lint": "eslint",
     "prepack": "pnpm build",
     "release": "pnpm test && pnpm prepack && pnpm changelogen --release --push && pnpm publish",
     "test": "pnpm lint && vitest run --coverage"
@@ -38,13 +38,13 @@
   "devDependencies": {
     "@nuxt/module-builder": "latest",
     "@nuxt/test-utils": "latest",
-    "@nuxtjs/eslint-config-typescript": "latest",
     "@vitest/coverage-v8": "latest",
     "changelogen": "latest",
     "del": "latest",
-    "eslint": "latest",
+    "eslint": "9.1.1",
     "nuxt": "latest",
-    "vitest": "latest"
+    "vitest": "latest",
+    "@nuxt/eslint-config": "0.3.9"
   },
   "publishConfig": {
     "access": "public"

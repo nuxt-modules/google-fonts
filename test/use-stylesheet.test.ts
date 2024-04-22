@@ -7,19 +7,19 @@ describe('use stylesheet', async () => {
       app: {
         head: {
           link: [
-            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato' }
-          ]
-        }
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato' },
+          ],
+        },
       },
       googleFonts: {
         families: {
-          Roboto: true
+          Roboto: true,
         },
         useStylesheet: true,
         download: false,
-        preload: true
-      }
-    }
+        preload: true,
+      },
+    },
   })
 
   test('has prefetch link', async () => {

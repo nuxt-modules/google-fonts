@@ -5,10 +5,10 @@ export default defineAppConfig({
     image: '/social-card.png',
     socials: {
       twitter: 'nuxt_js',
-      github: 'nuxt-modules/google-fonts'
+      github: 'nuxt-modules/google-fonts',
     },
     header: {
-      logo: true
-    }
-  }
+      logo: true,
+    },
+  },
 })
