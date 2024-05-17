@@ -21,7 +21,7 @@ export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
     version,
-    configKey: 'googleFonts'
+    configKey: 'googleFonts',
   },
   defaults: {
     families: {},
@@ -39,9 +39,9 @@ export default defineNuxtModule<ModuleOptions>({
     outputDir: 'node_modules/.cache/nuxt-google-fonts',
     stylePath: 'css/nuxt-google-fonts.css',
     fontsDir: 'fonts',
-    fontsPath: '../fonts'
+    fontsPath: '../fonts',
   },
-  async setup (options, nuxt) {
+  async setup(options, nuxt) {
     // If user hasn't set the display value manually and isn't using
     // a preload, set the default display value to 'swap'
     if (options.display === undefined && !options.preload) {
@@ -49,7 +49,7 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     const fontsParsed: GoogleFonts[] = []
-    // @ts-ignore
+    // @ts-expect-error nuxt 2 types
     const head = (nuxt.options.app.head || nuxt.options.head) as NuxtAppHead
 
     // disable module when head is a function
@@ -62,7 +62,7 @@ export default defineNuxtModule<ModuleOptions>({
     // merge fonts from valid head link
     fontsParsed.push(...head.link
       .filter(link => isValidURL(String(link.href)))
-      .map(link => parse(String(link.href)))
+      .map(link => parse(String(link.href))),
     )
 
     // construct google fonts url
@@ -88,7 +88,7 @@ export default defineNuxtModule<ModuleOptions>({
           outputDir,
           stylePath: options.stylePath,
           fontsDir: options.fontsDir,
-          fontsPath: options.fontsPath
+          fontsPath: options.fontsPath,
         })
 
         const outputFonts: string[] = []
@@ -125,7 +125,8 @@ export default defineNuxtModule<ModuleOptions>({
         nuxt.options.nitro = nuxt.options.nitro || {}
         nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
         nuxt.options.nitro.publicAssets.push({ dir: outputDir })
-      } catch (e) {
+      }
+      catch (e) {
         logger.error(e)
       }
 
@@ -137,7 +138,7 @@ export default defineNuxtModule<ModuleOptions>({
       head.link.push({
         key: 'gf-prefetch',
         rel: 'dns-prefetch',
-        href: 'https://fonts.gstatic.com/'
+        href: 'https://fonts.gstatic.com/',
       })
     }
 
@@ -149,15 +150,15 @@ export default defineNuxtModule<ModuleOptions>({
           key: 'gf-preconnect',
           rel: 'preconnect',
           href: 'https://fonts.gstatic.com/',
-          crossorigin: 'anonymous'
+          crossorigin: 'anonymous',
         },
 
         // Should also preconnect to origin of Google fonts stylesheet.
         {
           key: 'gf-origin-preconnect',
           rel: 'preconnect',
-          href: 'https://fonts.googleapis.com/'
-        }
+          href: 'https://fonts.googleapis.com/',
+        },
       )
     }
 
@@ -168,7 +169,7 @@ export default defineNuxtModule<ModuleOptions>({
         key: 'gf-preload',
         rel: 'preload',
         as: 'style',
-        href: url
+        href: url,
       })
     }
 
@@ -177,7 +178,7 @@ export default defineNuxtModule<ModuleOptions>({
       head.link.push({
         key: 'gf-style',
         rel: 'stylesheet',
-        href: url
+        href: url,
       })
 
       return
@@ -187,22 +188,22 @@ export default defineNuxtModule<ModuleOptions>({
       // JS to inject CSS
       head.script.push({
         key: 'gf-script',
-        innerHTML: `(function(){var l=document.createElement('link');l.rel="stylesheet";l.href="${url}";document.querySelector("head").appendChild(l);})();`
+        innerHTML: `(function(){var l=document.createElement('link');l.rel="stylesheet";l.href="${url}";document.querySelector("head").appendChild(l);})();`,
       })
 
       // no-JS fallback
       head.noscript.push({
         key: 'gf-noscript',
         innerHTML: `<link rel="stylesheet" href="${url}">`,
-        tagPosition: 'bodyOpen'
+        tagPosition: 'bodyOpen',
       })
 
       // Disable sanitazions
-      // @ts-ignore
+      // @ts-expect-error nuxt 2 types
       head.__dangerouslyDisableSanitizersByTagID = head.__dangerouslyDisableSanitizersByTagID || {}
-      // @ts-ignore
+      // @ts-expect-error nuxt 2 types
       head.__dangerouslyDisableSanitizersByTagID['gf-script'] = ['innerHTML']
-      // @ts-ignore
+      // @ts-expect-error nuxt 2 types
       head.__dangerouslyDisableSanitizersByTagID['gf-noscript'] = ['innerHTML']
 
       return
@@ -217,13 +218,13 @@ export default defineNuxtModule<ModuleOptions>({
         if(m){m.setAttribute('content',Number(m.getAttribute('content'))+1);}
         else{m=document.createElement('meta');m.setAttribute('name','head:count');m.setAttribute('content','1');h.append(m);}
         var l=document.createElement('link');l.rel='stylesheet';l.href='${url}';h.appendChild(l);
-      })();`
+      })();`,
     })
 
     // no-JS fallback
     head.noscript.push({
       children: `<link rel="stylesheet" href="${url}">`,
-      tagPosition: 'bodyOpen'
+      tagPosition: 'bodyOpen',
     })
-  }
+  },
 })

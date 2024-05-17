@@ -9,7 +9,7 @@ describe('warn', async () => {
   })
 
   await setup({
-    server: false
+    server: false,
   })
 
   test('should warn if no provided fonts', () => {
