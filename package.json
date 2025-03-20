@@ -36,7 +36,7 @@
     "pathe": "^1.1.2"
   },
   "devDependencies": {
-    "@nuxt/module-builder": "latest",
+    "@nuxt/module-builder": "0.8.3",
     "@nuxt/test-utils": "latest",
     "@vitest/coverage-v8": "latest",
     "changelogen": "latest",
