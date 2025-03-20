@@ -1,4 +1,4 @@
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
 import { describe, test, expect, afterAll } from 'vitest'
 import { setup, useTestContext } from '@nuxt/test-utils'
 import { deleteAsync } from 'del'
@@ -9,10 +9,10 @@ describe('download', async () => {
     nuxtConfig: {
       googleFonts: {
         families: {
-          Roboto: true
-        }
-      }
-    }
+          Roboto: true,
+        },
+      },
+    },
   })
 
   test('render', () => {
