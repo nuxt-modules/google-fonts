@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.16.1",
+    "@nuxt/schema": "^3.16.1",
     "google-fonts-helper": "^3.7.3",
     "pathe": "^2.0.3"
   },
