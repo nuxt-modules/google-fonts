@@ -1,6 +1,6 @@
-import { resolve } from 'pathe'
 import type { MetaObject } from '@nuxt/schema'
-import { defineNuxtModule, isNuxt2, resolvePath, useLogger } from '@nuxt/kit'
+import { defineNuxtModule, isNuxtMajorVersion, resolvePath, useLogger } from '@nuxt/kit'
+import { resolve } from 'pathe'
 import { constructURL, download, isValidURL, parse, merge, type DownloadOptions, type GoogleFonts } from 'google-fonts-helper'
 import { name, version } from '../package.json'
 
@@ -184,7 +184,7 @@ export default defineNuxtModule<ModuleOptions>({
       return
     }
 
-    if (isNuxt2()) {
+    if (isNuxtMajorVersion(2, nuxt)) {
       // JS to inject CSS
       head.script.push({
         key: 'gf-script',
@@ -212,7 +212,7 @@ export default defineNuxtModule<ModuleOptions>({
     // JS to inject CSS
     head.script.unshift({
       key: 'gf-script',
-      children: `(function(){
+      innerHTML: `(function(){
         var h=document.querySelector("head");
         var m=h.querySelector('meta[name="head:count"]');
         if(m){m.setAttribute('content',Number(m.getAttribute('content'))+1);}
@@ -223,7 +223,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     // no-JS fallback
     head.noscript.push({
-      children: `<link rel="stylesheet" href="${url}">`,
+      innerHTML: `<link rel="stylesheet" href="${url}">`,
       tagPosition: 'bodyOpen',
     })
   },
