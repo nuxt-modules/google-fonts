@@ -33,18 +33,18 @@
   "dependencies": {
     "@nuxt/kit": "^3.16.1",
     "google-fonts-helper": "^3.7.3",
-    "pathe": "^1.1.2"
+    "pathe": "^2.0.3"
   },
   "devDependencies": {
-    "@nuxt/module-builder": "0.8.3",
+    "@nuxt/eslint-config": "latest",
+    "@nuxt/module-builder": "latest",
     "@nuxt/test-utils": "latest",
     "@vitest/coverage-v8": "latest",
     "changelogen": "latest",
     "del": "latest",
-    "eslint": "9.1.1",
+    "eslint": "latest",
     "nuxt": "latest",
-    "vitest": "latest",
-    "@nuxt/eslint-config": "0.3.9"
+    "vitest": "latest"
   },
   "publishConfig": {
     "access": "public"
