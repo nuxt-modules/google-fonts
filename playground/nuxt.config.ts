@@ -2,12 +2,12 @@ import GoogleFontsModule from '../src/module'
 
 export default defineNuxtConfig({
   modules: [
-    GoogleFontsModule
+    GoogleFontsModule,
   ],
   googleFonts: {
     families: {
       Roboto: true,
-      Mulish: true
-    }
-  }
+      Mulish: true,
+    },
+  },
 })

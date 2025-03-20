@@ -25,29 +25,29 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "lint": "eslint --ext .js,.ts,.vue",
+    "lint": "eslint",
     "prepack": "pnpm build",
     "release": "pnpm test && pnpm prepack && pnpm changelogen --release --push && pnpm publish",
     "test": "pnpm lint && vitest run --coverage"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.11.1",
-    "google-fonts-helper": "^3.5.0",
+    "@nuxt/kit": "^3.16.1",
+    "google-fonts-helper": "^3.7.3",
     "pathe": "^1.1.2"
   },
   "devDependencies": {
     "@nuxt/module-builder": "0.8.3",
     "@nuxt/test-utils": "latest",
-    "@nuxtjs/eslint-config-typescript": "latest",
     "@vitest/coverage-v8": "latest",
     "changelogen": "latest",
     "del": "latest",
-    "eslint": "latest",
+    "eslint": "9.1.1",
     "nuxt": "latest",
-    "vitest": "latest"
+    "vitest": "latest",
+    "@nuxt/eslint-config": "0.3.9"
   },
   "publishConfig": {
     "access": "public"
   },
-  "packageManager": "pnpm@9.1.1"
+  "packageManager": "pnpm@10.6.5"
 }
