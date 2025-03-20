@@ -7,17 +7,17 @@ describe('basic', async () => {
       app: {
         head: {
           link: [
-            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato' }
-          ]
-        }
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato' },
+          ],
+        },
       },
       googleFonts: {
         families: {
-          Roboto: true
+          Roboto: true,
         },
-        download: false
-      }
-    }
+        download: false,
+      },
+    },
   })
 
   test('has prefetch link', async () => {
