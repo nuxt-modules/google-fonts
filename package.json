@@ -44,7 +44,7 @@
     "eslint": "9.1.1",
     "nuxt": "latest",
     "vitest": "latest",
-    "@nuxt/eslint-config": "0.3.9"
+    "@nuxt/eslint-config": "1.2.0"
   },
   "publishConfig": {
     "access": "public"
