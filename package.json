@@ -31,8 +31,8 @@
     "test": "pnpm lint && vitest run --coverage"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.16.1",
-    "@nuxt/schema": "^3.16.1",
+    "@nuxt/kit": "^4.5.2",
+    "@nuxt/schema": "^4.5.2",
     "google-fonts-helper": "^3.7.3",
     "pathe": "^2.0.3"
   },
