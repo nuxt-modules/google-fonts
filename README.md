@@ -10,6 +10,9 @@
 
 > [Google Fonts](https://developers.google.com/fonts) module for [Nuxt](https://nuxtjs.org)
 
+> [!WARNING]
+> `@nuxtjs/google-fonts` is deprecated and no longer maintained. Use [`@nuxt/fonts`](https://github.com/nuxt/fonts) instead, which self-hosts fonts from Google Fonts and other providers. See the [migration guide](https://nuxt.com/modules/fonts/migrating-from-google-fonts) to switch.
+
 - [✨ &nbsp;Release Notes](https://google-fonts.nuxtjs.org/releases)
 - [📖 &nbsp;Documentation](https://google-fonts.nuxtjs.org)
 
